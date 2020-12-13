@@ -15,5 +15,6 @@ public class Household {
 	
 	private Long id = null;
 	private HousingType housingType = HousingType.UNDEFINED;
+	private Long housingTypeOrdinal = null;
 
 }
