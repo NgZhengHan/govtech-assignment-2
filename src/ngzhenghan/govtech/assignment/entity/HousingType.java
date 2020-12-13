@@ -6,8 +6,7 @@ package ngzhenghan.govtech.assignment.entity;
 /**
  * @author Ng Zheng Han
  * 
- * Enumeration for the different housing types
- *
+ * enum for the different housing types
  */
 public enum HousingType {
 

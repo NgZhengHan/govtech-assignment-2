@@ -5,27 +5,29 @@ package ngzhenghan.govtech.assignment.entity;
 
 /**
  * @author Ng Zheng Han
- * 
- * enum for gender
+ *
+ * enum for occupation types
  */
-public enum Gender {
-	
+public enum OccupationType {
+
 	UNDEFINED("Undefined"),
-	MALE("Male"),
-	FEMALE("Female"),
+	UNEMPLOYED("Unemployed"),
+	STUDENT("Student"),
+	EMPLOYED("Employed"),
 	OTHER("Other");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
 	
 	private String name = UNDEFINED_STRING;
-
+	
 	/**
 	 * Constructor with a given name as the parameter
 	 * 
 	 * @param givenName The name that will be used by this enum
 	 */
-	private Gender (String givenName) 	{
+	private OccupationType (String givenName) 	{
 		
+		name = givenName;
 	}
 	
 	/**
@@ -37,5 +39,4 @@ public enum Gender {
 	public String getName () 	{
 		return name;
 	}
-
 }
