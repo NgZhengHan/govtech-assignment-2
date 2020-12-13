@@ -1,18 +1,19 @@
 /**
  * 
  */
-package ngzhenghan.govtech.assignment.entity;
+package ngzhenghan.govtech.assignment.entity.enums;
 
 /**
  * @author Ng Zheng Han
- * 
- * enum for gender
+ *
  */
-public enum Gender {
+public enum MaritalStatus {
 	
 	UNDEFINED("Undefined"),
-	MALE("Male"),
-	FEMALE("Female"),
+	SINGLE("Single"),
+	MARRIED("Married"),
+	WIDOWED("Widowed"),
+	DIVORCED_OR_SEPARATED("Divorced/Separated"),
 	OTHER("Other");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
@@ -24,7 +25,7 @@ public enum Gender {
 	 * 
 	 * @param givenName The name that will be used by this enum
 	 */
-	private Gender (String givenName) 	{
+	private MaritalStatus (String givenName) 	{
 		
 	}
 	

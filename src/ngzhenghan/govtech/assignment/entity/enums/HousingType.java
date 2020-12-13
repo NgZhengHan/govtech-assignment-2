@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ngzhenghan.govtech.assignment.entity;
+package ngzhenghan.govtech.assignment.entity.enums;
 
 /**
  * @author Ng Zheng Han
