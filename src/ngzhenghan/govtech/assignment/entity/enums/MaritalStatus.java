@@ -8,13 +8,13 @@ package ngzhenghan.govtech.assignment.entity.enums;
  *
  */
 public enum MaritalStatus {
-	
+
 	UNDEFINED("Undefined"),
+	OTHER("Other"),
 	SINGLE("Single"),
 	MARRIED("Married"),
 	WIDOWED("Widowed"),
-	DIVORCED_OR_SEPARATED("Divorced/Separated"),
-	OTHER("Other");
+	DIVORCED_OR_SEPARATED("Divorced/Separated");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
 	

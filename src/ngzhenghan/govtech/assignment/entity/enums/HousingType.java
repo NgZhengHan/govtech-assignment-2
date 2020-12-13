@@ -13,6 +13,8 @@ public enum HousingType {
 	/*
 	 * The 3 types of households
 	 */
+	UNDEFINED("Undefined"),
+	OTHER("Other"),
 	LANDED("Landed"), 
 	CONDOMINIUM("Condominium"), 
 	HDB("HDB");

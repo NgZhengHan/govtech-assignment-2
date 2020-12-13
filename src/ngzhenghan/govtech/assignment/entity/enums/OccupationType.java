@@ -11,10 +11,10 @@ package ngzhenghan.govtech.assignment.entity.enums;
 public enum OccupationType {
 
 	UNDEFINED("Undefined"),
+	OTHER("Other"),
 	UNEMPLOYED("Unemployed"),
 	STUDENT("Student"),
-	EMPLOYED("Employed"),
-	OTHER("Other");
+	EMPLOYED("Employed");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
 	

@@ -9,11 +9,11 @@ package ngzhenghan.govtech.assignment.entity.enums;
  * enum for gender
  */
 public enum Gender {
-	
+
 	UNDEFINED("Undefined"),
+	OTHER("Other"),
 	MALE("Male"),
-	FEMALE("Female"),
-	OTHER("Other");
+	FEMALE("Female");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
 	
