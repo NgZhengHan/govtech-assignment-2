@@ -3,6 +3,8 @@
  */
 package ngzhenghan.govtech.assignment.entity;
 
+import java.util.Date;
+
 /**
  * @author Ng Zheng Han
  * 
@@ -15,5 +17,7 @@ public class FamilyMember {
 	private Long id = null;
 	private String name = UNDEFINED_STRING;
 	private Long spouseId = null;
+	private Double annualIncome = null;
+	private Date dateOfBirth = null;
 	
 }
