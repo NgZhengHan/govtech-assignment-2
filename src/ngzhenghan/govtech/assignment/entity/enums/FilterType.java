@@ -10,6 +10,11 @@ package ngzhenghan.govtech.assignment.entity.enums;
  */
 public enum FilterType {
 
+	/*
+	 * Note: 
+	 * This name must match the definition in the Hibernate mappig files. Otherwise 
+	 * it will not be able to be found. 
+	 */
 	NOT_DELETED("notDeleted");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
