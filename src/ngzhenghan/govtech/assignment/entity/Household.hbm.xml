@@ -8,5 +8,7 @@
 			</generator>
 		</id>
 		<property name = "housingTypeOrdinal" type = "long" column = "housing_type_ordinal"/>
+		
+		<filter name = "notDeleted" />
 	</class>
 </hibernate-mapping>

@@ -13,5 +13,7 @@
 		<property name = "occupationTypeOrdinal" column = "occupation_type_ordinal"/>
 		<property name = "annualIncome" column = "annual_income"/>
 		<property name = "dateOfBirth" column = "date_of_birth"/>
+		
+		<filter name = "notDeleted"/>
 	</class>
 </hibernate-mapping>
