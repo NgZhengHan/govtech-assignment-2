@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
+import ngzhenghan.govtech.assignment.entity.Household;
+
 /**
  * @author Ng Zheng Han
  *
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CreateHousehold", urlPatterns = "/household")
 public class CreateHousehold extends HttpServlet {
 	
+	private static final String PARAMETER_REQUEST_BODY = "request.body";
 	
 	/**
 	 * Generated serial
@@ -26,6 +30,16 @@ public class CreateHousehold extends HttpServlet {
 	@Override
 	protected void doPost (HttpServletRequest givenRequest, HttpServletResponse givenResponse) 	{
 		
+		/*
+		 * Get the body of the http request. This should be exactly 
+		 * a JSON format of the entity to be created
+		 */
+		String requestBody = givenRequest.getParameter(PARAMETER_REQUEST_BODY);
+		
+		/*
+		 * Deserialize the body into the referenced object
+		 */
+		Household household = SerializationUtility.fromJson(requestBody, Household.class);
 	}
 
 }
