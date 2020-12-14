@@ -8,9 +8,12 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.enums.HousingType;
+import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
@@ -33,19 +36,42 @@ public class TestCreateHousehold extends HttpServlet implements ServletContextLi
 	 */
 	public void contextInitialized (ServletContextEvent givenEvent) 	{
 
-		Utility.printDebugStatement("Iniitalized");
 		
 		try
 		{
-			Thread.sleep(3000);
+			Thread.sleep(10000);
 		}
 		catch(Exception exception)
 		{
 			
 		}
 		
+		Utility.printDebugStatement("Iniitalized");
+	}
+	
+	@Override
+	protected void doGet (HttpServletRequest givenRequest, HttpServletResponse givenResponse) 	{
+
+		Utility.printDebugStatement("doGet");
+		
 		Household household = new Household();
 		household.setDeleted(false);
 		household.setHousingType(HousingType.HDB);
+		
+		/*
+		 * Use the entity manager to perform the operation
+		 */
+		Utility.printDebugStatement("try create");
+		Long result = HouseholdManager.createHousehold(household);
+
+
+		if(null == result)
+		{
+			Utility.printDebugStatement("create failed");
+		}
+		else
+		{
+			Utility.printDebugStatement("create success");
+		}
 	}
 }

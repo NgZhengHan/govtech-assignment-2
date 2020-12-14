@@ -47,7 +47,7 @@ public class CreateHousehold extends HttpServlet {
 		/*
 		 * Use the entity manager to perform the operation
 		 */
-		Household result = HouseholdManager.createHousehold(household);
+		Long result = HouseholdManager.createHousehold(household);
 		
 		/*
 		 * If there was any error, the result would be null

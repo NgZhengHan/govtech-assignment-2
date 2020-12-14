@@ -5,19 +5,28 @@ package ngzhenghan.govtech.assignment.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import ngzhenghan.govtech.assignment.entity.enums.Gender;
 import ngzhenghan.govtech.assignment.entity.enums.MaritalStatus;
 import ngzhenghan.govtech.assignment.entity.enums.OccupationType;
+
 
 /**
  * @author Ng Zheng Han
  * 
  * Class to define a family member
  */
+
+@Entity
 public class FamilyMember {
 
 	private static final String UNDEFINED_STRING = "Undefined";
 	
+	@Id
+	@GeneratedValue
 	private Long id = null;
 	private String name = UNDEFINED_STRING;
 	private Gender gender = Gender.UNDEFINED;

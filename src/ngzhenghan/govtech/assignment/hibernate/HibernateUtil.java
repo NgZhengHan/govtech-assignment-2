@@ -6,18 +6,21 @@ package ngzhenghan.govtech.assignment.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 import ngzhenghan.govtech.assignment.entity.enums.FilterType;
+import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
  * @author Ng Zheng Han
  *
  * Convenience class to do common hibernate functions, such as opening sessions
  */
-public class HibernateUtility {
+public class HibernateUtil {
 	
 	private static SessionFactory sessionFactory = null;
 	
@@ -41,15 +44,24 @@ public class HibernateUtility {
 			 */
 			try
 			{
-				final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-				sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+//				final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+//				sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+				
+//				Configuration configuration = new Configuration();
+//				configuration.configure();
+//				sessionFactory = configuration.buildSessionFactory();
+				
+				StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+				MetadataSources sources = new MetadataSources(registry);
+				Metadata metadata = sources.getMetadataBuilder().build();
+				sessionFactory = metadata.getSessionFactoryBuilder().build();
 			}
 			catch (HibernateException exception)
 			{
 				/*
 				 * Use a logger here
 				 */
-				
+				exception.printStackTrace();
 				throw new ExceptionInInitializerError(exception);
 			}
 		}
@@ -77,7 +89,10 @@ public class HibernateUtility {
 		 * As an example only, create a session with an interceptor. We are not using 
 		 * this interceptor for now. This to illustrate an example of using interceptors.
 		 */
-		Session session = getSessionFactory().withOptions().interceptor(new TransactionInterceptor()).openSession();
+//		Session session = getSessionFactory().withOptions().interceptor(new TransactionInterceptor()).openSession();
+		Utility.printDebugStatement("Opening session");
+		Session session = getSessionFactory().openSession();
+		Utility.printDebugStatement("Session opened");
 		
 		/*
 		 * Use the notDeleted filter

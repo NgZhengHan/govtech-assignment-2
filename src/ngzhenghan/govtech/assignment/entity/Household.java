@@ -3,6 +3,10 @@
  */
 package ngzhenghan.govtech.assignment.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import ngzhenghan.govtech.assignment.entity.enums.HousingType;
 
 /**
@@ -11,11 +15,15 @@ import ngzhenghan.govtech.assignment.entity.enums.HousingType;
  * Class for households
  *
  */
+
+@Entity
 public class Household {
-	
+
+	@Id
+	@GeneratedValue
 	private Long id = null;
 	private HousingType housingType = HousingType.UNDEFINED;
-	private Long housingTypeOrdinal = null;
+	private Integer housingTypeOrdinal = null;
 	
 	private Boolean deleted = null;
 
@@ -36,14 +44,16 @@ public class Household {
 
 	public void setHousingType(HousingType housingType) {
 		this.housingType = housingType;
+		housingTypeOrdinal = housingType.ordinal();
 	}
 
-	public Long getHousingTypeOrdinal() {
+	public Integer getHousingTypeOrdinal() {
 		return housingTypeOrdinal;
 	}
 
-	public void setHousingTypeOrdinal(Long housingTypeOrdinal) {
+	public void setHousingTypeOrdinal(Integer housingTypeOrdinal) {
 		this.housingTypeOrdinal = housingTypeOrdinal;
+		housingType = HousingType.values()[housingTypeOrdinal];
 	}
 
 	public Boolean getDeleted() {

@@ -28,6 +28,7 @@ public enum FilterType {
 	 */
 	private FilterType (String givenName) 	{
 		
+		name = givenName;
 	}
 	
 	/**

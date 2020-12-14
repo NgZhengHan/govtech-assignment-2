@@ -26,6 +26,7 @@ public enum Gender {
 	 */
 	private Gender (String givenName) 	{
 		
+		name = givenName;
 	}
 	
 	/**

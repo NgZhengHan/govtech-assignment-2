@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import ngzhenghan.govtech.assignment.entity.Household;
+import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
  * @author Ng Zheng Han
@@ -36,14 +37,14 @@ public class HouseholdDao {
 	 * to this instance of data access object during construction
 	 * 
 	 * @param givenHousehold The Household to be created in the database
-	 * @return The newly created Household, or null if there is an error
+	 * @return The id of the newly created Household, or null if there is an error
 	 */
-	public Household createHousehold (Household givenHousehold) 	{
+	public Long createHousehold (Household givenHousehold) 	{
 		
 		/*
 		 * Variable for the result
 		 */
-		Household result = null;
+		Long result = null;
 		
 		/*
 		 * Use the session to save the entity
@@ -59,7 +60,9 @@ public class HouseholdDao {
 			/*
 			 * Save the entity
 			 */
-			result = (Household) getSession().save(givenHousehold);
+			Utility.printDebugStatement("before save");
+			result = (Long) getSession().save(givenHousehold);
+			Utility.printDebugStatement("after save");
 			
 			/*
 			 * Commit the transaction to flush the session
@@ -71,6 +74,8 @@ public class HouseholdDao {
 			/*
 			 * Use logger here
 			 */
+			Utility.printDebugStatement("Exception");
+			exception.printStackTrace();
 			
 			/*
 			 * Rollback the transaction on error

@@ -27,6 +27,7 @@ public enum MaritalStatus {
 	 */
 	private MaritalStatus (String givenName) 	{
 		
+		name = givenName;
 	}
 	
 	/**
