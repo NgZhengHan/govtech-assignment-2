@@ -31,4 +31,6 @@ public class FamilyMember {
 	private Double annualIncome = null;
 	private Date dateOfBirth = null;
 	
+	private Boolean deleted = null;
+	
 }
