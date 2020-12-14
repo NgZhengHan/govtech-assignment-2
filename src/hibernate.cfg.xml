@@ -9,5 +9,8 @@
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/assignment_2_database</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        
+        <mapping resource = "ngzhenghan/govtech/assignment/entity/Household.hbm.xml"/>
+        <mapping resource = "ngzhenghan/govtech/assignment/entity/FamilyMember.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
