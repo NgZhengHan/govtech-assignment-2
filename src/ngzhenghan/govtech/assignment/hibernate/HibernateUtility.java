@@ -77,6 +77,11 @@ public class HibernateUtility {
 		 */
 		Session session = getSessionFactory().withOptions().interceptor(new TransactionInterceptor()).openSession();
 		
+		/*
+		 * Use the notDeleted filter
+		 */
+		session.enableFilter("notDeleted");
+		
 		return session;
 	}
 
