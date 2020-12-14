@@ -17,7 +17,6 @@ public class Household {
 	private HousingType housingType = HousingType.UNDEFINED;
 	private Long housingTypeOrdinal = null;
 	
-	
 	private Boolean deleted = null;
 
 }
