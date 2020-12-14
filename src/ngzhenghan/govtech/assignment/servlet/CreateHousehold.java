@@ -3,6 +3,8 @@
  */
 package ngzhenghan.govtech.assignment.servlet;
 
+import java.io.IOException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.entity.Household;
+import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
 
 /**
  * @author Ng Zheng Han
@@ -40,6 +43,31 @@ public class CreateHousehold extends HttpServlet {
 		 * Deserialize the body into the referenced object
 		 */
 		Household household = SerializationUtility.fromJson(requestBody, Household.class);
+		
+		/*
+		 * Use the entity manager to perform the operation
+		 */
+		Household result = HouseholdManager.createHousehold(household);
+		
+		/*
+		 * If there was any error, the result would be null
+		 */
+		if(null == result)
+		{
+			/*
+			 * There was an error. Return to the client an indication of error
+			 */
+			try
+			{
+				givenResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			} 
+			catch (IOException exception) 
+			{
+				/*
+				 * Use logger here
+				 */
+			}
+		}
 	}
 
 }

@@ -16,6 +16,11 @@ import org.hibernate.EmptyInterceptor;
  */
 public class TransactionInterceptor extends EmptyInterceptor {
 
+	/**
+	 * Generated serial
+	 */
+	private static final long serialVersionUID = 6238577487830455813L;
+
 	/*
 	 * We are not implementing this part for now. 
 	 * 
