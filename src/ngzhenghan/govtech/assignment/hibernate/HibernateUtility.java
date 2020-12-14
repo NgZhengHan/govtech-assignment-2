@@ -47,6 +47,8 @@ public class HibernateUtility {
 				/*
 				 * Use a logger here
 				 */
+				
+				throw new ExceptionInInitializerError(exception);
 			}
 		}
 		
