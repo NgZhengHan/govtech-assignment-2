@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package = "ngzhenghan.govtech.assignment.entity">
+	<class name = "FamilyMember" dynamic-update = "true" schema = "public" table = "family_members">
+		<id name = "id" column = "id">
+			<generator class = "sequence">
+				<param name = "sequence_name">family_member_id_sequence</param>
+			</generator>
+		</id>
+		<property name = "name" column = "name"/>
+		<property name = "genderOrdinal" column = "gender_ordinal"/>
+		<property name = "maritalStatusOrdinal" column = "marital_status_ordinal"/>
+		<property name = "occupationTypeOrdinal" column = "occupation_type_ordinal"/>
+		<property name = "annualIncome" column = "annual_income"/>
+		<property name = "dateOfBirth" column = "date_of_birth"/>
+	</class>
+</hibernate-mapping>
