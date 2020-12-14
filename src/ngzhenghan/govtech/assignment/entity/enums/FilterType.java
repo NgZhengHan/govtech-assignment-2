@@ -18,6 +18,7 @@ public enum FilterType {
 	NOT_DELETED("notDeleted");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
+	public static final FilterType values[] = values();
 	
 	private String name = UNDEFINED_STRING;
 

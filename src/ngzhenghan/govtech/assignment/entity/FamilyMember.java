@@ -5,10 +5,6 @@ package ngzhenghan.govtech.assignment.entity;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import ngzhenghan.govtech.assignment.entity.enums.Gender;
 import ngzhenghan.govtech.assignment.entity.enums.MaritalStatus;
 import ngzhenghan.govtech.assignment.entity.enums.OccupationType;
@@ -19,24 +15,20 @@ import ngzhenghan.govtech.assignment.entity.enums.OccupationType;
  * 
  * Class to define a family member
  */
-
-@Entity
 public class FamilyMember {
 
 	private static final String UNDEFINED_STRING = "Undefined";
 	
-	@Id
-	@GeneratedValue
 	private Long id = null;
 	private String name = UNDEFINED_STRING;
 	private Gender gender = Gender.UNDEFINED;
-	private Long genderOrdinal = null;
+	private Integer genderOrdinal = null;
 	private MaritalStatus maritalStatus = MaritalStatus.UNDEFINED;
-	private Long maritalStatusOrdinal = null;
+	private Integer maritalStatusOrdinal = null;
 	private FamilyMember spouse = null;
 	private Long spouseId = null;
 	private OccupationType occupationType = OccupationType.UNDEFINED;
-	private Long occupationTypeOrdinal = null;
+	private Integer occupationTypeOrdinal = null;
 	private Double annualIncome = null;
 	private Date dateOfBirth = null;
 	
@@ -67,14 +59,16 @@ public class FamilyMember {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+		genderOrdinal = gender.ordinal();
 	}
 
-	public Long getGenderOrdinal() {
+	public Integer getGenderOrdinal() {
 		return genderOrdinal;
 	}
 
-	public void setGenderOrdinal(Long genderOrdinal) {
+	public void setGenderOrdinal(Integer genderOrdinal) {
 		this.genderOrdinal = genderOrdinal;
+		gender = Gender.values[genderOrdinal];
 	}
 
 	public MaritalStatus getMaritalStatus() {
@@ -83,14 +77,16 @@ public class FamilyMember {
 
 	public void setMaritalStatus(MaritalStatus maritalStatus) {
 		this.maritalStatus = maritalStatus;
+		maritalStatusOrdinal = maritalStatus.ordinal();
 	}
 
-	public Long getMaritalStatusOrdinal() {
+	public Integer getMaritalStatusOrdinal() {
 		return maritalStatusOrdinal;
 	}
 
-	public void setMaritalStatusOrdinal(Long maritalStatusOrdinal) {
+	public void setMaritalStatusOrdinal(Integer maritalStatusOrdinal) {
 		this.maritalStatusOrdinal = maritalStatusOrdinal;
+		maritalStatus = MaritalStatus.values[maritalStatusOrdinal];
 	}
 
 	public FamilyMember getSpouse() {
@@ -115,14 +111,16 @@ public class FamilyMember {
 
 	public void setOccupationType(OccupationType occupationType) {
 		this.occupationType = occupationType;
+		occupationTypeOrdinal = occupationType.ordinal();
 	}
 
-	public Long getOccupationTypeOrdinal() {
+	public Integer getOccupationTypeOrdinal() {
 		return occupationTypeOrdinal;
 	}
 
-	public void setOccupationTypeOrdinal(Long occupationTypeOrdinal) {
+	public void setOccupationTypeOrdinal(Integer occupationTypeOrdinal) {
 		this.occupationTypeOrdinal = occupationTypeOrdinal;
+		occupationType = OccupationType.values[occupationTypeOrdinal];
 	}
 
 	public Double getAnnualIncome() {

@@ -16,6 +16,7 @@ public enum Gender {
 	FEMALE("Female");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
+	public static final Gender values[] = values();
 	
 	private String name = UNDEFINED_STRING;
 

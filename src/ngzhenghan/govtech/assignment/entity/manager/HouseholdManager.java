@@ -7,7 +7,7 @@ import org.hibernate.Session;
 
 import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.dataaccessobject.HouseholdDao;
-import ngzhenghan.govtech.assignment.hibernate.HibernateUtil;
+import ngzhenghan.govtech.assignment.hibernate.HibernateUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
@@ -40,7 +40,7 @@ public class HouseholdManager {
 		/*
 		 * Create a session
 		 */
-		try(Session session = HibernateUtil.openSession())
+		try(Session session = HibernateUtility.openSession())
 		{
 			/*
 			 * Create the data access object

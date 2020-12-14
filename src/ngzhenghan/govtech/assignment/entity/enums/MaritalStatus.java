@@ -17,6 +17,7 @@ public enum MaritalStatus {
 	DIVORCED_OR_SEPARATED("Divorced/Separated");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
+	public static final MaritalStatus values[] = values();
 	
 	private String name = UNDEFINED_STRING;
 

@@ -20,6 +20,7 @@ public enum HousingType {
 	HDB("HDB");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
+	public static final HousingType values[] = values();
 	
 	private String name = UNDEFINED_STRING;
 	

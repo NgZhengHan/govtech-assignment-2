@@ -17,6 +17,7 @@ public enum OccupationType {
 	EMPLOYED("Employed");
 	
 	private static final String UNDEFINED_STRING = "Undefined";
+	public static final OccupationType values[] = values();
 	
 	private String name = UNDEFINED_STRING;
 	
