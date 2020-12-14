@@ -84,7 +84,23 @@ public class HibernateUtility {
 		 */
 		session.enableFilter(FilterType.NOT_DELETED.getName());
 		
+		/*
+		 * Log here that a session is opened
+		 */
+		
 		return session;
+	}
+	
+	/**
+	 * Close the session factory
+	 * 
+	 */
+	public static void close () 	{
+		
+		/*
+		 * Log here that the session is closed
+		 */
+		getSessionFactory().close();
 	}
 
 }
