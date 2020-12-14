@@ -4,6 +4,7 @@
 package ngzhenghan.govtech.assignment.hibernate;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -56,6 +57,25 @@ public class HibernateUtility {
 		 * It the creation of the session factory fails, then null is returned.
 		 */
 		return sessionFactory;
+	}
+	
+	/**
+	 * Create and return a new session
+	 * 
+	 * @return The new session
+	 */
+	public static Session openSession () 	{
+		
+		/*
+		 * Create a session with options
+		 * 
+		 * Note:
+		 * As an example only, create a session with an interceptor. We are not using 
+		 * this interceptor for now. This to illustrate an example of using interceptors.
+		 */
+		Session session = getSessionFactory().withOptions().interceptor(new TransactionInterceptor()).openSession();
+		
+		return session;
 	}
 
 }

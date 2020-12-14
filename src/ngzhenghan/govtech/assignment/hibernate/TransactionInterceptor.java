@@ -21,8 +21,9 @@ public class TransactionInterceptor extends EmptyInterceptor {
 	 * 
 	 * Override some of the methods such as 
 	 * 
-	 * afterTransactionCompletion(Transaction tx)
-	 * onDelete(Transaction tx) 
+	 * afterTransactionCompletion
+	 * onDelete
+	 * onSave
 	 * 
 	 * Just to name a few. Consider creating separate interceptors for the 
 	 * different event types
