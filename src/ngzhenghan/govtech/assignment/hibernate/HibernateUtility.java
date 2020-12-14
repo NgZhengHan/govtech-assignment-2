@@ -10,6 +10,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import ngzhenghan.govtech.assignment.entity.enums.FilterType;
+
 /**
  * @author Ng Zheng Han
  *
@@ -80,7 +82,7 @@ public class HibernateUtility {
 		/*
 		 * Use the notDeleted filter
 		 */
-		session.enableFilter("notDeleted");
+		session.enableFilter(FilterType.NOT_DELETED.getName());
 		
 		return session;
 	}
