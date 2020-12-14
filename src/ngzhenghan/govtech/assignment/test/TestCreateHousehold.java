@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+import ngzhenghan.govtech.assignment.entity.Household;
+import ngzhenghan.govtech.assignment.entity.enums.HousingType;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
@@ -32,5 +34,18 @@ public class TestCreateHousehold extends HttpServlet implements ServletContextLi
 	public void contextInitialized (ServletContextEvent givenEvent) 	{
 
 		Utility.printDebugStatement("Iniitalized");
+		
+		try
+		{
+			Thread.sleep(3000);
+		}
+		catch(Exception exception)
+		{
+			
+		}
+		
+		Household household = new Household();
+		household.setDeleted(false);
+		household.setHousingType(HousingType.HDB);
 	}
 }
