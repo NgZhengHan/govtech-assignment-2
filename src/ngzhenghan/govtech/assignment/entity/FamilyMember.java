@@ -7,6 +7,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.search.annotations.DateBridge;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import ngzhenghan.govtech.assignment.entity.enums.Gender;
 import ngzhenghan.govtech.assignment.entity.enums.MaritalStatus;
 import ngzhenghan.govtech.assignment.entity.enums.OccupationType;
@@ -17,11 +28,17 @@ import ngzhenghan.govtech.assignment.entity.enums.OccupationType;
  * 
  * Class to define a family member
  */
+@Indexed
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class FamilyMember {
 
 	private static final String UNDEFINED_STRING = "Undefined";
 	
+	@Id
+	@GeneratedValue
 	private Long id = null;
+	
+	@Field
 	private String name = UNDEFINED_STRING;
 	private Gender gender = Gender.UNDEFINED;
 	private Integer genderOrdinal = null;
@@ -32,6 +49,9 @@ public class FamilyMember {
 	private OccupationType occupationType = OccupationType.UNDEFINED;
 	private Integer occupationTypeOrdinal = null;
 	private Double annualIncome = null;
+	
+	@Field
+	@DateBridge(resolution = Resolution.DAY)
 	private Date dateOfBirth = null;
 	
 	private Map<Long, Household> households = new HashMap<>();

@@ -6,6 +6,14 @@ package ngzhenghan.govtech.assignment.entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.search.annotations.Indexed;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import ngzhenghan.govtech.assignment.entity.enums.HousingType;
 
 /**
@@ -14,8 +22,12 @@ import ngzhenghan.govtech.assignment.entity.enums.HousingType;
  * Class for households
  *
  */
+@Indexed
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Household {
 
+	@Id
+	@GeneratedValue
 	private Long id = null;
 	private HousingType housingType = HousingType.UNDEFINED;
 	private Integer housingTypeOrdinal = null;

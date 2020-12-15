@@ -3,8 +3,6 @@
  */
 package ngzhenghan.govtech.assignment.entity.dataaccessobject;
 
-import java.sql.SQLException;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
