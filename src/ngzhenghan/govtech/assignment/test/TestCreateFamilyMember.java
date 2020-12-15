@@ -5,22 +5,19 @@ package ngzhenghan.govtech.assignment.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
-
 import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
-import ngzhenghan.govtech.assignment.entity.Household;
-import ngzhenghan.govtech.assignment.entity.enums.HousingType;
-import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
+import ngzhenghan.govtech.assignment.entity.FamilyMember;
+import ngzhenghan.govtech.assignment.entity.enums.Gender;
+import ngzhenghan.govtech.assignment.entity.enums.MaritalStatus;
+import ngzhenghan.govtech.assignment.entity.enums.OccupationType;
+import ngzhenghan.govtech.assignment.entity.manager.FamilyMemberManager;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
@@ -29,30 +26,35 @@ import ngzhenghan.govtech.assignment.utility.Utility;
  * Helper class to test
  */
 
-@WebServlet(name = "TestCreateHousehold", urlPatterns = "/test/create-household")
-public class TestCreateHousehold extends HttpServlet 	{
+@WebServlet(name = "TestCreateFamilyMember", urlPatterns = "/test/create-family-member")
+public class TestCreateFamilyMember extends HttpServlet 	{
 
 	/**
 	 * Generated serial
 	 */
-	private static final long serialVersionUID = -4478714367826394267L;
+	private static final long serialVersionUID = 7709293985812613331L;
 	
 	@Override
 	protected void doGet (HttpServletRequest givenRequest, HttpServletResponse givenResponse) 	{
 
 		Utility.printDebugStatement("doGet");
 		
-		Household household = new Household();
-		household.setDeleted(false);
-		household.setHousingType(HousingType.HDB);
-		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/household", household);
-//		printTestBuilder(household);
+		FamilyMember familyMember = new FamilyMember();
+		familyMember.setDeleted(false);
+		familyMember.setAnnualIncome(Double.valueOf("150000"));
+		familyMember.setDateOfBirth(new Date());
+		familyMember.setGender(Gender.MALE);
+		familyMember.setMaritalStatus(MaritalStatus.SINGLE);
+		familyMember.setName("John Doe");
+		familyMember.setOccupationType(OccupationType.EMPLOYED);
+		familyMember.setSpouse(null);
+		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/family-member", familyMember);
 		
 		/*
 		 * Use the entity manager to perform the operation
 		 */
 		Utility.printDebugStatement("try create");
-		Long result = HouseholdManager.createHousehold(household);
+		Long result = FamilyMemberManager.createFamilyMember(familyMember);
 
 
 		if(null == result)
@@ -97,7 +99,7 @@ public class TestCreateHousehold extends HttpServlet 	{
 				Utility.printDebugStatement("creating content");
 				writer.println("Created: " + result.toString());
 				Utility.printDebugStatement("creating content json");
-				writer.println("Details: " + SerializationUtility.toJson(household));
+				writer.println("Details: " + SerializationUtility.toJson(familyMember));
 				Utility.printDebugStatement("flushing");
 				writer.flush();
 				Utility.printDebugStatement("flushed");
@@ -111,15 +113,4 @@ public class TestCreateHousehold extends HttpServlet 	{
 			}
 		}
 	}
-	
-//	public void printTestBuilder(Object object) 	{
-//		
-//		List<NameValuePair> parameters = new ArrayList<>();
-//		parameters.add(new BasicNameValuePair("request.body", SerializationUtility.toJson(object)));
-//		HttpPost httpPost = Utility.createHttpPost("http://localhost:8080/govtech-assignment-2/household", parameters, null);
-//
-//		Utility.printDebugStatement("created uri");
-//			
-//		Utility.printDebugStatement(httpPost.getURI().toString());
-//	}
 }

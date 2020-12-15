@@ -77,8 +77,11 @@ public class HouseholdManager {
 	 * @param givenHousehold The Household to be validated for a "create" operation
 	 */
 	private static void validateForCreate (Household givenHousehold) 	{
-		
-		
+
+		/*
+		 * A newly created entity should have its deleted flag set as false
+		 */
+		givenHousehold.setDeleted(false);
 		
 	}
 }

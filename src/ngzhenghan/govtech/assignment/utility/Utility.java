@@ -3,12 +3,16 @@
  */
 package ngzhenghan.govtech.assignment.utility;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.message.BasicNameValuePair;
+
+import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
 
 /**
  * @author Ng Zheng Han
@@ -123,6 +127,24 @@ public class Utility {
 		 * Return the object
 		 */
 		return httpPost;
+	}
+	
+	/**
+	 * Helper method for testing purposes. Use the given object to create a 
+	 * httppost with a serialized Json of the given object as the "request.body"
+	 * parameter
+	 * 
+	 * @param object The object to be used for serializing into a json 
+	 */
+	public static void buildAndPrintHttpPostForObject(String givenURL, Object object) 	{
+		
+		List<NameValuePair> parameters = new ArrayList<>();
+		parameters.add(new BasicNameValuePair("request.body", SerializationUtility.toJson(object)));
+		HttpPost httpPost = Utility.createHttpPost(givenURL, parameters, null);
+
+		Utility.printDebugStatement("created uri");
+			
+		Utility.printDebugStatement(httpPost.getURI().toString());
 	}
 
 }

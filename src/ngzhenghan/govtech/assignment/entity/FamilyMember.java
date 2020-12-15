@@ -95,6 +95,15 @@ public class FamilyMember {
 
 	public void setSpouse(FamilyMember spouse) {
 		this.spouse = spouse;
+		
+		if(null == spouse)
+		{
+			spouseId = null;
+		}
+		else
+		{
+			spouseId = spouse.getId();
+		}
 	}
 
 	public Long getSpouseId() {
@@ -103,6 +112,17 @@ public class FamilyMember {
 
 	public void setSpouseId(Long spouseId) {
 		this.spouseId = spouseId;
+		
+		if(null == spouseId)
+		{
+			spouse = null;
+		}
+		else
+		{
+			/*
+			 * Cannot get spouse from just id alone
+			 */
+		}
 	}
 
 	public OccupationType getOccupationType() {

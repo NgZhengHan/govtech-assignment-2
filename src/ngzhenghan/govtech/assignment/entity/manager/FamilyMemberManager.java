@@ -78,7 +78,10 @@ public class FamilyMemberManager {
 	 */
 	private static void validateForCreate (FamilyMember givenFamilyMember) 	{
 		
-		
+		/*
+		 * A newly created entity should have its deleted flag set as false
+		 */
+		givenFamilyMember.setDeleted(false);
 		
 	}
 }
