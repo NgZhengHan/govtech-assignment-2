@@ -4,6 +4,7 @@
 package ngzhenghan.govtech.assignment.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
+import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
  * @author Ng Zheng Han
@@ -66,6 +68,31 @@ public class CreateHousehold extends HttpServlet {
 				/*
 				 * Use logger here
 				 */
+			}
+		}
+		else
+		{
+			Utility.printDebugStatement("create success, printing response");
+			try(PrintWriter writer = givenResponse.getWriter();) 
+			{
+				Utility.printDebugStatement("setting content type to json");
+//				givenResponse.setContentType("application/json");
+				Utility.printDebugStatement("setting content type to plain text");
+				givenResponse.setContentType("text/plain");
+				Utility.printDebugStatement("setting encoding type to utf-8");
+				givenResponse.setCharacterEncoding("UTF-8");
+				Utility.printDebugStatement("creating content");
+				writer.print("Created: " + result.toString());
+				Utility.printDebugStatement("flushing");
+				writer.flush();
+				Utility.printDebugStatement("flushed");
+			} 
+			catch (IOException e) 
+			{
+				/*
+				 * Use logger here
+				 */
+				Utility.printDebugStatement("error creating response");
 			}
 		}
 	}

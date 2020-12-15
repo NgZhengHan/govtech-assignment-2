@@ -8,7 +8,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
  * @author Ng Zheng Han
@@ -33,6 +37,49 @@ public class SerializationUtility {
 	static
 	{
 		DATE_FORMAT.setTimeZone(TIMEZONE);
+	}
+	
+	/**
+	 * Serializes the given object into json. Returns the json string if 
+	 * successful. If serialization fails, then returns null
+	 * 
+	 * @param givenObject
+	 * @return
+	 */
+	public static String toJson (Object givenObject) 	{
+		
+		/*
+		 * Variable for the result
+		 */
+		String result = null;
+		
+		/*
+		 * Create a writer and an ObjectMapper that will do the serialization
+		 */
+		ObjectWriter objectWriter;
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.setDateFormat(DATE_FORMAT);
+		objectWriter = objectMapper.writer();
+		
+		/*
+		 * Serialize
+		 */
+		try
+		{
+			result = objectWriter.writeValueAsString(givenObject);
+		}
+		catch(JsonProcessingException exception)
+		{
+			/*
+			 * Use logger here
+			 */
+			Utility.printDebugStatement("Error serializing");
+		}
+		
+		/*
+		 * Return the result
+		 */
+		return result;
 	}
 	
 	/**
