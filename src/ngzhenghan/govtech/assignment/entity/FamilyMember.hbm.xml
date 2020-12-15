@@ -14,6 +14,12 @@
 		<property name="annualIncome" column="annual_income"/>
 		<property name="dateOfBirth" column="date_of_birth"/>
 		
+		<map name="households" table="household_members_mapping_table" cascade="all">
+			<key column="family_member_id"/>
+			<map-key-many-to-many column="household_id" class="Household"/>
+			<many-to-many class="Household"/>
+		</map>
+		
 		<filter name="notDeleted"/>
 	</class>
 </hibernate-mapping>

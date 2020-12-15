@@ -4,6 +4,8 @@
 package ngzhenghan.govtech.assignment.entity;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import ngzhenghan.govtech.assignment.entity.enums.Gender;
 import ngzhenghan.govtech.assignment.entity.enums.MaritalStatus;
@@ -31,6 +33,8 @@ public class FamilyMember {
 	private Integer occupationTypeOrdinal = null;
 	private Double annualIncome = null;
 	private Date dateOfBirth = null;
+	
+	private Map<Long, Household> households = new HashMap<>();
 	
 	private Boolean deleted = null;
 
@@ -157,6 +161,14 @@ public class FamilyMember {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Map<Long, Household> getHouseholds() {
+		return households;
+	}
+
+	public void setHouseholds(Map<Long, Household> households) {
+		this.households = households;
 	}
 
 	public Boolean getDeleted() {

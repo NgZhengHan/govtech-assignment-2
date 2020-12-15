@@ -3,6 +3,9 @@
  */
 package ngzhenghan.govtech.assignment.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ngzhenghan.govtech.assignment.entity.enums.HousingType;
 
 /**
@@ -16,6 +19,8 @@ public class Household {
 	private Long id = null;
 	private HousingType housingType = HousingType.UNDEFINED;
 	private Integer housingTypeOrdinal = null;
+	
+	private Map<Long, FamilyMember> householdMembers = new HashMap<>();
 	
 	private Boolean deleted = null;
 
@@ -46,6 +51,14 @@ public class Household {
 	public void setHousingTypeOrdinal(Integer housingTypeOrdinal) {
 		this.housingTypeOrdinal = housingTypeOrdinal;
 		housingType = HousingType.values[housingTypeOrdinal];
+	}
+
+	public Map<Long, FamilyMember> getFamilyMembers() {
+		return householdMembers;
+	}
+
+	public void setFamilyMembers(Map<Long, FamilyMember> familyMembers) {
+		this.householdMembers = familyMembers;
 	}
 
 	public Boolean getDeleted() {

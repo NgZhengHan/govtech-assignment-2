@@ -9,6 +9,12 @@
 		</id>
 		<property name="housingTypeOrdinal" column="housing_type_ordinal"/>
 		
+		<map name="householdMembers" table="household_members_mapping_table" cascade="all">
+			<key column="household_id"/>
+			<map-key-many-to-many column="family_member_id" class="FamilyMember"/>
+			<many-to-many class="FamilyMember"/>
+		</map>
+		
 		<filter name="notDeleted"/>
 	</class>
 </hibernate-mapping>
