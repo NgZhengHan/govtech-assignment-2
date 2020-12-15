@@ -8,6 +8,7 @@ package ngzhenghan.govtech.assignment.entity;
  *
  * Helper class for mapping Household and FamilyMember together
  */
+
 public class HouseholdMember {
 
 	private Long id = null;
