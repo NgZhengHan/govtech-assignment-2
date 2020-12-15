@@ -6,6 +6,8 @@ package ngzhenghan.govtech.assignment.test;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -15,8 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.message.BasicNameValuePair;
 
 import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.entity.Household;
@@ -133,20 +137,12 @@ public class TestCreateHousehold extends HttpServlet implements ServletContextLi
 	
 	public void printTestBuilder(Object object) 	{
 		
-		try 
-		{
-			URIBuilder uriBuilder = new URIBuilder("http://localhost:8080/govtech-assignment-2/household");
-			uriBuilder.setParameter("request.body", SerializationUtility.toJson(object));
+		List<NameValuePair> parameters = new ArrayList<>();
+		parameters.add(new BasicNameValuePair("request.body", SerializationUtility.toJson(object)));
+		HttpPost httpPost = Utility.createHttpPost("http://localhost:8080/govtech-assignment-2/household", parameters, null);
+
+		Utility.printDebugStatement("created uri");
 			
-			HttpPost httpPost = new HttpPost(uriBuilder.build());
-			Utility.printDebugStatement("created uri");
-			
-			Utility.printDebugStatement(httpPost.getURI().toString());
-		} 
-		catch (URISyntaxException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Utility.printDebugStatement(httpPost.getURI().toString());
 	}
 }
