@@ -45,9 +45,7 @@ public class HouseholdManager {
 			/*
 			 * Create the data access object
 			 */
-			Utility.printDebugStatement("creating Dao");
 			HouseholdDao householdDao = new HouseholdDao(session);
-			Utility.printDebugStatement("DAO created");
 			
 			/*
 			 * Get the data access object to save the entity. 

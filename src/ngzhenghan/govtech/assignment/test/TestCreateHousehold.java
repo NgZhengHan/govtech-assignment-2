@@ -5,7 +5,6 @@ package ngzhenghan.govtech.assignment.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
 import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;

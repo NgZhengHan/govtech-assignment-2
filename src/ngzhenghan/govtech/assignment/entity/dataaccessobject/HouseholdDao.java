@@ -60,9 +60,7 @@ public class HouseholdDao {
 			/*
 			 * Save the entity
 			 */
-			Utility.printDebugStatement("before save");
 			result = (Long) getSession().save(givenHousehold);
-			Utility.printDebugStatement("after save");
 			
 			/*
 			 * Commit the transaction to flush the session

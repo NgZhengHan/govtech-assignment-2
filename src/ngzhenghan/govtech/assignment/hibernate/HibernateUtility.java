@@ -10,8 +10,6 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-
 import ngzhenghan.govtech.assignment.entity.enums.FilterType;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
@@ -44,12 +42,6 @@ public class HibernateUtility {
 			 */
 			try
 			{
-//				final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-//				sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-				
-//				Configuration configuration = new Configuration();
-//				configuration.configure();
-//				sessionFactory = configuration.buildSessionFactory();
 				
 				StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 				MetadataSources sources = new MetadataSources(registry);
@@ -89,10 +81,7 @@ public class HibernateUtility {
 		 * As an example only, create a session with an interceptor. We are not using 
 		 * this interceptor for now. This to illustrate an example of using interceptors.
 		 */
-//		Session session = getSessionFactory().withOptions().interceptor(new TransactionInterceptor()).openSession();
-		Utility.printDebugStatement("Opening session");
-		Session session = getSessionFactory().openSession();
-		Utility.printDebugStatement("Session opened");
+		Session session = getSessionFactory().withOptions().interceptor(new TransactionInterceptor()).openSession();
 		
 		/*
 		 * Use the notDeleted filter
