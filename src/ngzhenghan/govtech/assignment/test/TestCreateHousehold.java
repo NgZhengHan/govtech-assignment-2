@@ -32,32 +32,13 @@ import ngzhenghan.govtech.assignment.utility.Utility;
  * Helper class to test
  */
 
-@WebListener
 @WebServlet(name = "TestCreateHousehold", urlPatterns = "/test/create-household")
-public class TestCreateHousehold extends HttpServlet implements ServletContextListener 	{
+public class TestCreateHousehold extends HttpServlet 	{
 
 	/**
 	 * Generated serial
 	 */
 	private static final long serialVersionUID = -4478714367826394267L;
-
-	/*
-	 * Called when this servlet is finished initializing
-	 */
-	public void contextInitialized (ServletContextEvent givenEvent) 	{
-
-		
-		try
-		{
-			Thread.sleep(10000);
-		}
-		catch(Exception exception)
-		{
-			
-		}
-		
-		Utility.printDebugStatement("Iniitalized");
-	}
 	
 	@Override
 	protected void doGet (HttpServletRequest givenRequest, HttpServletResponse givenResponse) 	{

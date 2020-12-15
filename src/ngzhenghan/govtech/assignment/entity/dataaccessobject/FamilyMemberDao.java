@@ -6,16 +6,16 @@ package ngzhenghan.govtech.assignment.entity.dataaccessobject;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import ngzhenghan.govtech.assignment.entity.Household;
+import ngzhenghan.govtech.assignment.entity.FamilyMember;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
  * @author Ng Zheng Han
  *
- * Data access object for Household. Interfaces between the 
+ * Data access object for FamilyMember. Interfaces between the 
  * server app and the database
  */
-public class HouseholdDao {
+public class FamilyMemberDao {
 	
 	private Session session = null;
 	
@@ -24,7 +24,7 @@ public class HouseholdDao {
 	 * 
 	 * @param givenSession The session which this data access object will use
 	 */
-	public HouseholdDao (Session givenSession) 	{
+	public FamilyMemberDao (Session givenSession) 	{
 		
 		/*
 		 * Reference the given session
@@ -33,13 +33,13 @@ public class HouseholdDao {
 	}
 	
 	/**
-	 * Create the given household using the session that this was given 
+	 * Create the given FamilyMember using the session that this was given 
 	 * to this instance of data access object during construction
 	 * 
-	 * @param givenHousehold The Household to be created in the database
-	 * @return The id of the newly created Household, or null if there is an error
+	 * @param givenFamilyMember The FamilyMember to be created in the database
+	 * @return The id of the newly created FamilyMember, or null if there is an error
 	 */
-	public Long createHousehold (Household givenHousehold) 	{
+	public Long createFamilyMember (FamilyMember givenFamilyMember) 	{
 		
 		/*
 		 * Variable for the result
@@ -60,7 +60,7 @@ public class HouseholdDao {
 			/*
 			 * Save the entity
 			 */
-			result = (Long) getSession().save(givenHousehold);
+			result = (Long) getSession().save(givenFamilyMember);
 			
 			/*
 			 * Commit the transaction to flush the session
