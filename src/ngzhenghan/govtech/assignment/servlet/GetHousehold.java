@@ -3,10 +3,23 @@
  */
 package ngzhenghan.govtech.assignment.servlet;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import ngzhenghan.govtech.assignment.entity.Household;
+import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
+import ngzhenghan.govtech.assignment.rest.response.GetHouseholdResponse;
+import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
+import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
  * @author Ng Zheng Han
@@ -15,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  * parameter in the request
  */
 
-@WebServlet(name = "GetHousehold", urlPatterns = "/household")
+@WebServlet(name = "GetHousehold", urlPatterns = "/households")
 public class GetHousehold extends HttpServlet {
 
 	/**
@@ -37,73 +50,61 @@ public class GetHousehold extends HttpServlet {
 		 */
 		String requestBody = givenRequest.getParameter(PARAMETER_REQUEST_BODY);
 		String requestType = givenRequest.getParameter(PARAMETER_REQUEST_TYPE);
+
+		Utility.printDebugStatement("requestBody: " + requestBody);
+		Utility.printDebugStatement("requestType: " + requestType);
+		/*
+		 * The result is a list of Households
+		 */
+		List<Household> householdList = new ArrayList<>();
+		GetHouseholdResponse getHouseholdResponse = null;
+		String serializedResult = "";
 		
 		/*
-		 * Deserialize the body into the referenced object
+		 * The result is based on the request type
 		 */
-//		
-//		/*
-//		 * The result is based on the request type
-//		 */
-//		if(REQUEST_TYPE_GET_ALL.equals(requestType))
-//		{
-//			/*
-//			 * Get all
-//			 */
-//		}
-//		else if(REQUEST_TYPE_GET_SOME.equals(requestType))
-//		{
-//			/*
-//			 * Get some, or get just 1
-//			 */
-//		}
-//		
-//		/*
-//		 * Use the entity manager to perform the operation
-//		 */
-//		Long result = HouseholdManager.createHousehold(household);
-//		
-//		/*
-//		 * If there was any error, the result would be null
-//		 */
-//		if(null == result)
-//		{
-//			/*
-//			 * There was an error. Return to the client an indication of error
-//			 */
-//			try
-//			{
-//				givenResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//			} 
-//			catch (IOException exception) 
-//			{
-//				/*
-//				 * Use logger here
-//				 */
-//				Utility.printDebugStatement("There is an internal server error, and we also encountered an error sending that report");
-//			}
-//		}
-//		else
-//		{
-//			/*
-//			 * Send the details of the created object back to the client
-//			 */
-//			try(PrintWriter writer = givenResponse.getWriter();) 
-//			{
-//				givenResponse.setContentType("text/plain");
-//				givenResponse.setCharacterEncoding("UTF-8");
-//				writer.println("id of created entity: " + result.toString());
-//				writer.println("Details: " + SerializationUtility.toJson(household));
-//				writer.flush();
-//			} 
-//			catch (IOException e) 
-//			{
-//				/*
-//				 * Use logger here
-//				 */
-//				Utility.printDebugStatement("error creating response");
-//			}
-//		}
+		if(REQUEST_TYPE_GET_ALL.equals(requestType))
+		{
+			/*
+			 * Get all
+			 */
+			serializedResult = HouseholdManager.getAllHouseholds();
+		}
+		else if(REQUEST_TYPE_GET_SOME.equals(requestType))
+		{
+			/*
+			 * Get some, or get just 1
+			 */
+			List<Long> idList = SerializationUtility.fromJson(requestBody, new TypeReference<List<Long>>() {});
+			
+			/*
+			 * Use the manager to get the result
+			 */
+			householdList = HouseholdManager.getHouseholds(idList);
+		}
+		Utility.printDebugStatement("finished getting");
+
+		/*
+		 * Send the details of the created object back to the client
+		 */
+		try(PrintWriter writer = givenResponse.getWriter();) 
+		{
+			Utility.printDebugStatement("setting content type");
+			givenResponse.setContentType("text/plain");
+			Utility.printDebugStatement("setting encoding");
+			givenResponse.setCharacterEncoding("UTF-8");
+			writer.println("search result: ");
+			Utility.printDebugStatement("setting encoding");
+			writer.println("Details: " + SerializationUtility.toJson(getHouseholdResponse));
+			writer.flush();
+		} 
+		catch (IOException e) 
+		{
+			/*
+			 * Use logger here
+			 */
+			Utility.printDebugStatement("error creating response");
+		}
 	}
 
 }

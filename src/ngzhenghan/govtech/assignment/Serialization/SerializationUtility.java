@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -74,6 +75,7 @@ public class SerializationUtility {
 			 * Use logger here
 			 */
 			Utility.printDebugStatement("Error serializing");
+			exception.printStackTrace();
 		}
 		
 		/*
@@ -110,6 +112,47 @@ public class SerializationUtility {
 		try
 		{
 			return objectMapper.readValue(givenJson, givenClass);
+		}
+		catch (IOException exception) 
+		{
+			/*
+			 * Use logger here
+			 */
+			/*
+			 * Return null
+			 */
+			return null;
+		}
+	}
+	
+	/**
+	 * 
+	 * Deserializes a given JSON formated string into an object instance 
+	 * of the given type reference
+	 * 
+	 * @param <T> The class defined by the given parameter 
+	 * @param givenJson A String in JSON format that will be used to create the java object
+	 * @param givenTypeReference The TypeReference of the object that the JSON string will be deserialized into
+	 * @return An instance of the object as a result of deserializing the given JSON string into the given TypeReference. Returns null if this method fails.
+	 */
+	public static <T> T fromJson (String givenJson, TypeReference<T> givenTypeReference) 	{
+		
+		/*
+		 * Create an ObjectMapper that will do the deserializing
+		 */
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		/*
+		 * Define the date format
+		 */
+		objectMapper.setDateFormat(DATE_FORMAT);
+		
+		/*
+		 * Try to perform the deserialization
+		 */
+		try
+		{
+			return objectMapper.readValue(givenJson, givenTypeReference);
 		}
 		catch (IOException exception) 
 		{

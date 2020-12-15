@@ -15,6 +15,6 @@
 			<many-to-many class="FamilyMember"/>
 		</map>
 		
-		<filter name="notDeleted"/>
+<!-- 		<filter name="notDeleted"/> -->
 	</class>
 </hibernate-mapping>

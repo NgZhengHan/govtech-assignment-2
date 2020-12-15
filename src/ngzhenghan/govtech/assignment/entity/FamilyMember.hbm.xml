@@ -20,6 +20,6 @@
 			<many-to-many class="Household"/>
 		</map>
 		
-		<filter name="notDeleted"/>
+<!-- 		<filter name="notDeleted"/> -->
 	</class>
 </hibernate-mapping>

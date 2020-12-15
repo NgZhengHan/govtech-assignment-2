@@ -35,6 +35,13 @@ public class Household {
 	private Map<Long, FamilyMember> householdMembers = new HashMap<>();
 	
 	private Boolean deleted = null;
+	
+	/*
+	 * Empty constructor
+	 */
+	public Household () 	{
+		
+	}
 
 	/*
 	 * Auto-generated getters and setters
