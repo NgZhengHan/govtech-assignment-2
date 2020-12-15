@@ -5,17 +5,10 @@ package ngzhenghan.govtech.assignment.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
 
 import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.entity.Household;

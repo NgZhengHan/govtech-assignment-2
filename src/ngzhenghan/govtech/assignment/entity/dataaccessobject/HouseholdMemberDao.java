@@ -6,7 +6,6 @@ package ngzhenghan.govtech.assignment.entity.dataaccessobject;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.HouseholdMember;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
