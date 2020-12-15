@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.enums.HousingType;
 import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
+import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**

@@ -12,7 +12,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
-import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
+import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
 
 /**
  * @author Ng Zheng Han
