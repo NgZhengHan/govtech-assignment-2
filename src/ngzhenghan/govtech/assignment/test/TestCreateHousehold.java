@@ -5,6 +5,7 @@ package ngzhenghan.govtech.assignment.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -13,6 +14,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 
 import ngzhenghan.govtech.assignment.Serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.entity.Household;
@@ -61,6 +65,7 @@ public class TestCreateHousehold extends HttpServlet implements ServletContextLi
 		Household household = new Household();
 		household.setDeleted(false);
 		household.setHousingType(HousingType.HDB);
+		printTestBuilder(household);
 		
 		/*
 		 * Use the entity manager to perform the operation
@@ -103,15 +108,15 @@ public class TestCreateHousehold extends HttpServlet implements ServletContextLi
 			try(PrintWriter writer = givenResponse.getWriter();) 
 			{
 				Utility.printDebugStatement("setting content type to json");
-//				givenResponse.setContentType("application/json");
+				givenResponse.setContentType("application/json");
 				Utility.printDebugStatement("setting content type to plain text");
-				givenResponse.setContentType("text/plain");
+//				givenResponse.setContentType("text/plain");
 				Utility.printDebugStatement("setting encoding type to utf-8");
 				givenResponse.setCharacterEncoding("UTF-8");
 				Utility.printDebugStatement("creating content");
-				writer.print("Created: " + result.toString());
+				writer.println("Created: " + result.toString());
 				Utility.printDebugStatement("creating content json");
-				writer.print("Details: " + SerializationUtility.toJson(household));
+				writer.println("Details: " + SerializationUtility.toJson(household));
 				Utility.printDebugStatement("flushing");
 				writer.flush();
 				Utility.printDebugStatement("flushed");
@@ -123,6 +128,25 @@ public class TestCreateHousehold extends HttpServlet implements ServletContextLi
 				 */
 				Utility.printDebugStatement("error creating response");
 			}
+		}
+	}
+	
+	public void printTestBuilder(Object object) 	{
+		
+		try 
+		{
+			URIBuilder uriBuilder = new URIBuilder("http://localhost:8080/govtech-assignment-2/household");
+			uriBuilder.setParameter("request.body", SerializationUtility.toJson(object));
+			
+			HttpPost httpPost = new HttpPost(uriBuilder.build());
+			Utility.printDebugStatement("created uri");
+			
+			Utility.printDebugStatement(httpPost.getURI().toString());
+		} 
+		catch (URISyntaxException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
