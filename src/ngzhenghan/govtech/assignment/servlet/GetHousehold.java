@@ -54,10 +54,8 @@ public class GetHousehold extends HttpServlet {
 		Utility.printDebugStatement("requestBody: " + requestBody);
 		Utility.printDebugStatement("requestType: " + requestType);
 		/*
-		 * The result is a list of Households
+		 * The result in serialized form
 		 */
-		List<Household> householdList = new ArrayList<>();
-		GetHouseholdResponse getHouseholdResponse = null;
 		String serializedResult = "";
 		
 		/*
@@ -95,7 +93,7 @@ public class GetHousehold extends HttpServlet {
 			givenResponse.setCharacterEncoding("UTF-8");
 			writer.println("search result: ");
 			Utility.printDebugStatement("setting encoding");
-			writer.println("Details: " + SerializationUtility.toJson(getHouseholdResponse));
+			writer.println("" + serializedResult);
 			writer.flush();
 		} 
 		catch (IOException e) 

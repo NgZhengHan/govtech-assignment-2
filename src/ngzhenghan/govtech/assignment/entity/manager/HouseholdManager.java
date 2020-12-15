@@ -157,7 +157,10 @@ public class HouseholdManager {
 			/*
 			 * Serialize the result while we still have the session
 			 */
+			Utility.printDebugStatement("resultList.size(): " + resultList.size());
+			Utility.printDebugStatement("getHouseholdResponse.getHouseHolds().size(): " + getHouseholdResponse.getHouseHolds().size());
 			serializedResult = SerializationUtility.toJson(getHouseholdResponse);
+			Utility.printDebugStatement("serializedResult: " + serializedResult);
 		}
 		catch (Exception exception) 	
 		{

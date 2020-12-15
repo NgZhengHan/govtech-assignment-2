@@ -4,8 +4,8 @@
 package ngzhenghan.govtech.assignment.entity;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -54,7 +54,7 @@ public class FamilyMember {
 	@DateBridge(resolution = Resolution.DAY)
 	private Date dateOfBirth = null;
 	
-	private Map<Long, Household> households = new HashMap<>();
+	private Set<Household> households = new HashSet<>();
 	
 	private Boolean deleted = null;
 	
@@ -190,11 +190,11 @@ public class FamilyMember {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Map<Long, Household> getHouseholds() {
+	public Set<Household> getHouseholds() {
 		return households;
 	}
 
-	public void setHouseholds(Map<Long, Household> households) {
+	public void setHouseholds(Set<Household> households) {
 		this.households = households;
 	}
 

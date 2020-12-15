@@ -3,8 +3,8 @@
  */
 package ngzhenghan.govtech.assignment.entity;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,7 +32,7 @@ public class Household {
 	private HousingType housingType = HousingType.UNDEFINED;
 	private Integer housingTypeOrdinal = null;
 	
-	private Map<Long, FamilyMember> householdMembers = new HashMap<>();
+	private Set<FamilyMember> householdMembers = new HashSet<>();
 	
 	private Boolean deleted = null;
 	
@@ -72,11 +72,11 @@ public class Household {
 		housingType = HousingType.values[housingTypeOrdinal];
 	}
 
-	public Map<Long, FamilyMember> getHouseholdMembers() {
+	public Set<FamilyMember> getHouseholdMembers() {
 		return householdMembers;
 	}
 
-	public void setHouseholdMembers(Map<Long, FamilyMember> householdMembers) {
+	public void setHouseholdMembers(Set<FamilyMember> householdMembers) {
 		this.householdMembers = householdMembers;
 	}
 
