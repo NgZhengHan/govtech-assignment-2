@@ -3,15 +3,14 @@
  */
 package ngzhenghan.govtech.assignment.entity.manager;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.hibernate.Session;
 
 import ngzhenghan.govtech.assignment.entity.HouseholdMemberMapping;
-import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.HouseholdMember;
-import ngzhenghan.govtech.assignment.entity.dataaccessobject.HouseholdDao;
 import ngzhenghan.govtech.assignment.entity.dataaccessobject.HouseholdMemberDao;
 import ngzhenghan.govtech.assignment.hibernate.HibernateUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
@@ -44,44 +43,44 @@ public class HouseholdMemberManager {
 			/*
 			 * Loop through all the mappings in the helper class
 			 */
-			Map<Long, Long> householdIdsToFamilyMemberIds = givenHouseholdMemberMapping.getHouseholdIdsToFamilyMemberIds();
-			for(Entry<Long, Long> entry : householdIdsToFamilyMemberIds.entrySet())
+			Map<Long, List<Long>> householdIdsToFamilyMemberIds = givenHouseholdMemberMapping.getHouseholdIdsToFamilyMemberIds();
+			for(Entry<Long, List<Long>> entry : householdIdsToFamilyMemberIds.entrySet())
 			{
 				/*
 				 * Get the id of the household and the family member
 				 */
 				Long householdId = entry.getKey();
-				Long familyMemberId = entry.getValue();
-
-				/*
-				 * Validate
-				 */
-				if(null == householdId 
-						|| null == familyMemberId)
+				List<Long> familyMemberIds = entry.getValue();
+				
+				for(Long familyMemberId : familyMemberIds)
 				{
-					throw new NullPointerException();
+					/*
+					 * Use the helper method
+					 */
+					if(null == addHouseholdMember(householdMemberDao, householdId, familyMemberId))
+					{
+						result = false;
+					}
 				}
-				
+			}
+			Map<Long, List<Long>> familyMemberIdsToHouseholdIds = givenHouseholdMemberMapping.getFamilyMemberIdsToHouseholdIdsTo();
+			for(Entry<Long, List<Long>> entry : familyMemberIdsToHouseholdIds.entrySet())
+			{
 				/*
-				 * Create the household member
+				 * Get the id of the household and the family member
 				 */
-				HouseholdMember householdMember = new HouseholdMember();
+				Long familyMemberId = entry.getKey();
+				List<Long> householdIds = entry.getValue();
 				
-				/*
-				 * Fill in the details of the household member
-				 */
-				householdMember.setHouseholdId(householdId);
-				householdMember.setFamilyMemberId(familyMemberId);
-				
-				/*
-				 * Get the data access object to save the entity. 
-				 * 
-				 * Note:
-				 * save() returns the object
-				 */
-				if(null == householdMemberDao.createHouseholdMember(householdMember))
+				for(Long householdId : householdIds)
 				{
-					result = false;
+					/*
+					 * Use the helper method
+					 */
+					if(null == addHouseholdMember(householdMemberDao, householdId, familyMemberId))
+					{
+						result = false;
+					}
 				}
 			}
 		}
@@ -99,5 +98,53 @@ public class HouseholdMemberManager {
 		 */
 		return result;
 		
+	}
+	
+	/**
+	 * Helper method to add a household member
+	 * 
+	 * @param givenHouseholdMemberDao The data access object to use
+	 * @param givenHouseholdId The Household id to be used
+	 * @param givenFamilyMemberId The FamilyMember id to be used
+	 * @return
+	 */
+	public static Long addHouseholdMember (HouseholdMemberDao givenHouseholdMemberDao, 
+											Long givenHouseholdId, 
+											Long givenFamilyMemberId) 	{
+		
+		Long result = null;
+		
+		/*
+		 * Validate
+		 */
+		if(null == givenHouseholdId 
+		|| null == givenFamilyMemberId)
+		{
+			throw new NullPointerException();
+		}
+		
+		/*
+		 * Create the household member
+		 */
+		HouseholdMember householdMember = new HouseholdMember();
+		
+		/*
+		 * Fill in the details of the household member
+		 */
+		householdMember.setHouseholdId(givenHouseholdId);
+		householdMember.setFamilyMemberId(givenFamilyMemberId);
+		
+		/*
+		 * Get the data access object to save the entity. 
+		 * 
+		 * Note:
+		 * save() returns the object
+		 */
+		result = givenHouseholdMemberDao.createHouseholdMember(householdMember);
+		
+		/*
+		 * Return the result
+		 */
+		return result;
 	}
 }
