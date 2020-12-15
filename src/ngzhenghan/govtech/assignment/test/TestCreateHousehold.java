@@ -44,7 +44,7 @@ public class TestCreateHousehold extends HttpServlet 	{
 		
 		Household household = new Household();
 		household.setDeleted(false);
-		household.setHousingType(HousingType.HDB);
+		household.setHousingType(HousingType.CONDOMINIUM);
 		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/household", household);
 //		printTestBuilder(household);
 		

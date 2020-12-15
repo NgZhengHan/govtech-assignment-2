@@ -53,12 +53,12 @@ public class Household {
 		housingType = HousingType.values[housingTypeOrdinal];
 	}
 
-	public Map<Long, FamilyMember> getFamilyMembers() {
+	public Map<Long, FamilyMember> getHouseholdMembers() {
 		return householdMembers;
 	}
 
-	public void setFamilyMembers(Map<Long, FamilyMember> familyMembers) {
-		this.householdMembers = familyMembers;
+	public void setHouseholdMembers(Map<Long, FamilyMember> householdMembers) {
+		this.householdMembers = householdMembers;
 	}
 
 	public Boolean getDeleted() {
