@@ -85,7 +85,7 @@ public class TestCreateHousehold extends HttpServlet 	{
 		}
 		else
 		{
-			Utility.printDebugStatement("create success, printing response");
+			Utility.printDebugStatement("create success, printing response ");
 			try(PrintWriter writer = givenResponse.getWriter();) 
 			{
 				Utility.printDebugStatement("setting content type to json");
