@@ -80,7 +80,7 @@ public class CreateHousehold extends HttpServlet {
 			{
 				givenResponse.setContentType("text/plain");
 				givenResponse.setCharacterEncoding("UTF-8");
-				writer.println("Created: " + result.toString());
+				writer.println("id of created entity: " + result.toString());
 				writer.println("Details: " + SerializationUtility.toJson(household));
 				writer.flush();
 			} 

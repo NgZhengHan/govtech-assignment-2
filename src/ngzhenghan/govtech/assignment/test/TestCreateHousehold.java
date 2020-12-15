@@ -95,7 +95,7 @@ public class TestCreateHousehold extends HttpServlet 	{
 				Utility.printDebugStatement("setting encoding type to utf-8");
 				givenResponse.setCharacterEncoding("UTF-8");
 				Utility.printDebugStatement("creating content");
-				writer.println("Created: " + result.toString());
+				writer.println("id of created entity: " + result.toString());
 				Utility.printDebugStatement("creating content json");
 				writer.println("Details: " + SerializationUtility.toJson(household));
 				Utility.printDebugStatement("flushing");
