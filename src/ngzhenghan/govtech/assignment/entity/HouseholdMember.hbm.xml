@@ -7,8 +7,11 @@
 				<param name="sequence_name">household_members_id_sequence</param>
 			</generator>
 		</id>
-		<property name="householdId" column="household_id"/>
-		<property name="familyMemberId" column="family_member_id"/>
+		
+		<properties name="unique_key_1" unique="true">
+			<property name="householdId" column="household_id" unique-key="unique_key_1"/>
+			<property name="familyMemberId" column="family_member_id" unique-key="unique_key_1"/>
+		</properties>
 		
 		<filter name="notDeleted"/>
 	</class>
