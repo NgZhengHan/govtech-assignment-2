@@ -57,23 +57,23 @@ public class SearchHouseholdByGrant  extends HttpServlet {
 		 * Find out which grant this is
 		 */
 		SearchHouseholdRequest searchHouseholdRequest = null;
-		if(BabySunshineGrant.GRANT_NAME.equals(requestBody))
+		if(BabySunshineGrant.GRANT_NAME_IN_URL.equals(requestBody))
 		{
 			searchHouseholdRequest = SearchHouseholdByGrantSchemeRequest.generateSearchRequest(new BabySunshineGrant());
 		}
-		else if(ElderBonus.GRANT_NAME.equals(requestBody))
+		else if(ElderBonus.GRANT_NAME_IN_URL.equals(requestBody))
 		{
 			searchHouseholdRequest = SearchHouseholdByGrantSchemeRequest.generateSearchRequest(new ElderBonus());
 		}
-		else if(FamilyTogethernessScheme.GRANT_NAME.equals(requestBody))
+		else if(FamilyTogethernessScheme.GRANT_NAME_IN_URL.equals(requestBody))
 		{
 			searchHouseholdRequest = SearchHouseholdByGrantSchemeRequest.generateSearchRequest(new FamilyTogethernessScheme());
 		}
-		else if(StudentEncouragementBonus.GRANT_NAME.equals(requestBody))
+		else if(StudentEncouragementBonus.GRANT_NAME_IN_URL.equals(requestBody))
 		{
 			searchHouseholdRequest = SearchHouseholdByGrantSchemeRequest.generateSearchRequest(new StudentEncouragementBonus());
 		}
-		else if(YoloGstGrant.GRANT_NAME.equals(requestBody))
+		else if(YoloGstGrant.GRANT_NAME_IN_URL.equals(requestBody))
 		{
 			searchHouseholdRequest = SearchHouseholdByGrantSchemeRequest.generateSearchRequest(new YoloGstGrant());
 		}

@@ -10,5 +10,5 @@ package ngzhenghan.govtech.assignment.entity.grantscheme;
  */
 public class ElderBonus extends GrantScheme {
 
-	public static final String GRANT_NAME = "Elder Bonus";
+	public static final String GRANT_NAME_IN_URL = "elder-bonus";
 }

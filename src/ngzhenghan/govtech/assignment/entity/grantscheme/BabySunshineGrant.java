@@ -10,5 +10,5 @@ package ngzhenghan.govtech.assignment.entity.grantscheme;
  */
 public class BabySunshineGrant extends GrantScheme {
 
-	public static final String GRANT_NAME = "Baby Sunshine Grant";
+	public static final String GRANT_NAME_IN_URL = "baby-sunshine-grant";
 }

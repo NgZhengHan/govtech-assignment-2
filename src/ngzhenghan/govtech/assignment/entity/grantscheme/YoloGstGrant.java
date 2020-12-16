@@ -10,5 +10,5 @@ package ngzhenghan.govtech.assignment.entity.grantscheme;
  */
 public class YoloGstGrant extends GrantScheme {
 
-	public static final String GRANT_NAME = "YOLO GST Grant";
+	public static final String GRANT_NAME_IN_URL = "yolo-gst-grant";
 }
