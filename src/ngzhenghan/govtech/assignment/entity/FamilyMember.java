@@ -45,8 +45,6 @@ public class FamilyMember {
 	private Integer genderOrdinal = null;
 	private MaritalStatus maritalStatus = MaritalStatus.UNDEFINED;
 	private Integer maritalStatusOrdinal = null;
-	private FamilyMember spouse = null;
-	private Long spouseId = null;
 	private OccupationType occupationType = OccupationType.UNDEFINED;
 	private Integer occupationTypeOrdinal = null;
 	private Double annualIncome = null;
@@ -56,6 +54,8 @@ public class FamilyMember {
 	private Date dateOfBirth = null;
 	
 	private Set<Household> households = new HashSet<>();
+	private FamilyMember spouse = null;
+	private Long spouseId = null;
 	
 	private Boolean deleted = null;
 	

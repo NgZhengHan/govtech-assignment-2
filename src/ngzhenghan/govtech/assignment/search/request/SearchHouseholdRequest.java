@@ -95,8 +95,8 @@ public class SearchHouseholdRequest {
 		if(null == householdMembers)
 		{
 			/*
-			 * No household members means there cannot be at least one member whose 
-			 * age meets this criteria
+			 * No household members means there cannot be at least one member who 
+			 * meets this criteria
 			 */
 			return false;
 		}
@@ -143,8 +143,8 @@ public class SearchHouseholdRequest {
 		if(null == householdMembers)
 		{
 			/*
-			 * No household members means there cannot be at least one member whose 
-			 * age meets this criteria
+			 * No household members means there cannot be at least one member who 
+			 * meets this criteria
 			 */
 			return false;
 		}
@@ -191,25 +191,25 @@ public class SearchHouseholdRequest {
 		if(null == householdMembers)
 		{
 			/*
-			 * No household members means there cannot be at least one member whose 
-			 * age meets this criteria
+			 * No household members means there cannot be at least one member who 
+			 * meets this criteria
 			 */
 			return false;
 		}
 
-		for(FamilyMember householdMember : householdMembers)
-		{
-			Double age = householdMember.findAge();
-			
-			if(null != age
-					&& (age > withMembersOver))
-			{
-				/*
-				 * At least one member's age meets this criteria
-				 */
-				return true;
-			}
-		}
+//		for(FamilyMember householdMember : householdMembers)
+//		{
+//			Double age = householdMember.findAge();
+//			
+//			if(null != age
+//					&& (age > withMembersOver))
+//			{
+//				/*
+//				 * At least one member's age meets this criteria
+//				 */
+//				return true;
+//			}
+//		}
 		
 		return false;
 	}
