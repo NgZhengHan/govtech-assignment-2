@@ -333,9 +333,7 @@ public class HouseholdManager {
 		
 		for(Household household : givenHouseholdList)
 		{
-			boolean passAllConditions = true;
-			
-			if(passAllConditions)
+			if(givenSearchSearchRequest.checkAgainstConditions(household))
 			{
 				result.add(household);
 			}

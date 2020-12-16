@@ -44,6 +44,37 @@ public class Household {
 	public Household () 	{
 		
 	}
+	
+	/**
+	 * Go through all the household members and calculate the total income for this household
+	 */
+	public double updateTotalIncome () 	{
+		
+		double currentSum = 0;
+		
+		for(FamilyMember householdMemeber : householdMembers)
+		{
+			Double memberIncome = householdMemeber.getAnnualIncome();
+
+			/*
+			 * Remember that the income may be left empty/null
+			 */
+			if(null != memberIncome)
+			{
+				currentSum += memberIncome;
+			}
+		}
+		
+		/*
+		 * Update the total income
+		 */
+		totalIncome = Double.valueOf(currentSum);
+		
+		/*
+		 * Also return the value
+		 */
+		return currentSum;
+	}
 
 	/*
 	 * Auto-generated getters and setters
@@ -80,6 +111,20 @@ public class Household {
 
 	public void setHouseholdMembers(Set<FamilyMember> householdMembers) {
 		this.householdMembers = householdMembers;
+	}
+
+	/**
+	 * @return the totalIncome
+	 */
+	public Double getTotalIncome() {
+		return totalIncome;
+	}
+
+	/**
+	 * @param totalIncome the totalIncome to set
+	 */
+	public void setTotalIncome(Double totalIncome) {
+		this.totalIncome = totalIncome;
 	}
 
 	public Boolean getDeleted() {

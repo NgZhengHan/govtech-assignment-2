@@ -28,6 +28,9 @@ public class SearchHouseholdRequest {
 		
 		boolean passAllConditions = true;
 		
+		/*
+		 * For readablity, put it line by line
+		 */
 		passAllConditions = passAllConditions && checkTotalIncomeLessThan(givenHousehold);
 		
 		return passAllConditions;
@@ -45,7 +48,12 @@ public class SearchHouseholdRequest {
 		
 		if(null != totalIncomeLessThan)
 		{
+			double totalIncome = givenHousehold.updateTotalIncome();
 			
+			if(!(totalIncome < totalIncomeLessThan))
+			{
+				result = false;
+			}
 		}
 		
 		return result;
