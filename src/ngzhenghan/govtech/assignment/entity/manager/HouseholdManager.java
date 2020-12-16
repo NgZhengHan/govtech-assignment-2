@@ -21,7 +21,6 @@ import ngzhenghan.govtech.assignment.entity.dataaccessobject.HouseholdDao;
 import ngzhenghan.govtech.assignment.hibernate.HibernateUtility;
 import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
 import ngzhenghan.govtech.assignment.rest.response.GetHouseholdResponse;
-import ngzhenghan.govtech.assignment.search.request.SearchHouseholdByGrantSchemeRequest;
 import ngzhenghan.govtech.assignment.search.request.SearchHouseholdRequest;
 import ngzhenghan.govtech.assignment.search.response.SearchHouseholdResponse;
 import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
@@ -123,7 +122,6 @@ public class HouseholdManager {
 	 */
 	public static String getAllHouseholds () 	{
 
-		Utility.printDebugStatement("getAllHouseholds");
 		GetHouseholdResponse getHouseholdResponse = new GetHouseholdResponse();
 		String serializedResult = "";
 
@@ -132,7 +130,6 @@ public class HouseholdManager {
 		 */
 		try(Session session = HibernateUtility.openSession())
 		{
-			Utility.printDebugStatement("created session");
 			
 			/*
 			 * Build the query
@@ -144,30 +141,24 @@ public class HouseholdManager {
 			criteriaQuery = criteriaQuery.select(rootEntry);
 			TypedQuery<Household> typedQuery = session.createQuery(criteriaQuery);
 
-			Utility.printDebugStatement("created query");
 			/*
 			 * Perform the query
 			 */
 			List<Household> resultList = typedQuery.getResultList();
 			getHouseholdResponse.setHouseHolds(resultList);
-			Utility.printDebugStatement("performed query");
 			
 			/*
 			 * Initialize the results in order to get their embedded entities
 			 */
 			for(Household household : resultList)
 			{
-				Utility.printDebugStatement("initialize household[" + household.getId() + "]");
 				Hibernate.initialize(household);
 			}
 			
 			/*
 			 * Serialize the result while we still have the session
 			 */
-			Utility.printDebugStatement("resultList.size(): " + resultList.size());
-			Utility.printDebugStatement("getHouseholdResponse.getHouseHolds().size(): " + getHouseholdResponse.getHouseHolds().size());
 			serializedResult = SerializationUtility.toJson(getHouseholdResponse);
-			Utility.printDebugStatement("serializedResult: " + serializedResult);
 		}
 		catch (Exception exception) 	
 		{
@@ -191,7 +182,6 @@ public class HouseholdManager {
 	 */
 	public static String getSomeHouseholds (GetHouseholdRequest givenGetRequest) 	{
 
-		Utility.printDebugStatement("getSomeHouseholds");
 		GetHouseholdResponse getHouseholdResponse = new GetHouseholdResponse();
 		String serializedResult = "";
 
@@ -200,7 +190,6 @@ public class HouseholdManager {
 		 */
 		try(Session session = HibernateUtility.openSession())
 		{
-			Utility.printDebugStatement("created session");
 			
 			/*
 			 * Get the list of id to find
@@ -211,14 +200,12 @@ public class HouseholdManager {
 			 * Create the object that will help us get entities by id
 			 */
 			MultiIdentifierLoadAccess<Household> multiLoadAccess = session.byMultipleIds(Household.class);
-			Utility.printDebugStatement("created MultiIdentifierLoadAccess");
 			
 			/*
 			 * Perform the query
 			 */
 			List<Household> resultList = multiLoadAccess.multiLoad(idsToFind);
 			getHouseholdResponse.setHouseHolds(resultList);
-			Utility.printDebugStatement("performed query");
 			
 			/*
 			 * Remove nulls from the list
@@ -234,17 +221,13 @@ public class HouseholdManager {
 			 */
 			for(Household household : resultList)
 			{
-				Utility.printDebugStatement("initialize household[" + household.getId() + "]");
 				Hibernate.initialize(household);
 			}
 			
 			/*
 			 * Serialize the result while we still have the session
 			 */
-			Utility.printDebugStatement("resultList.size(): " + resultList.size());
-			Utility.printDebugStatement("getHouseholdResponse.getHouseHolds().size(): " + getHouseholdResponse.getHouseHolds().size());
 			serializedResult = SerializationUtility.toJson(getHouseholdResponse);
-			Utility.printDebugStatement("serializedResult: " + serializedResult);
 		}
 		catch (Exception exception) 	
 		{
@@ -263,7 +246,6 @@ public class HouseholdManager {
 	
 	public static String searchByHousehold (SearchHouseholdRequest givenSearchSearchRequest) 	{
 
-		Utility.printDebugStatement("searchByHousehold");
 		SearchHouseholdResponse searchHouseholdResponse = new SearchHouseholdResponse();
 		String serializedResult = "";
 		
@@ -275,7 +257,6 @@ public class HouseholdManager {
 		 */
 		try(Session session = HibernateUtility.openSession())
 		{
-			Utility.printDebugStatement("created session");
 			
 			/*
 			 * Build the query
@@ -287,31 +268,26 @@ public class HouseholdManager {
 			criteriaQuery = criteriaQuery.select(rootEntry);
 			TypedQuery<Household> typedQuery = session.createQuery(criteriaQuery);
 
-			Utility.printDebugStatement("created query");
 			/*
 			 * Perform the query
 			 */
 			List<Household> allHouseholds = typedQuery.getResultList();
-			Utility.printDebugStatement("performed query");
 			
 			/*
 			 * Initialize the results in order to get their embedded entities
 			 */
 			for(Household household : allHouseholds)
 			{
-				Utility.printDebugStatement("initialize household[" + household.getId() + "]");
 				Hibernate.initialize(household);
 			}
 			
 			List<Household> resultList = pruneHouseholdListBySearchRequest(allHouseholds, givenSearchSearchRequest);
+			searchHouseholdResponse.setHouseHolds(resultList);
 			
 			/*
 			 * Serialize the result while we still have the session
 			 */
-			Utility.printDebugStatement("resultList.size(): " + resultList.size());
-			Utility.printDebugStatement("searchHouseholdResponse.getHouseHolds().size(): " + searchHouseholdResponse.getHouseHolds().size());
 			serializedResult = SerializationUtility.toJson(searchHouseholdResponse);
-			Utility.printDebugStatement("serializedResult: " + serializedResult);
 		}
 		catch (Exception exception) 	
 		{
@@ -340,17 +316,5 @@ public class HouseholdManager {
 		}
 		
 		return result;
-	}
-	
-	public static String searchHouseholdByGrantScheme (SearchHouseholdByGrantSchemeRequest searchSearchRequest) 	{
-
-		Utility.printDebugStatement("searchByHousehold");
-		GetHouseholdResponse getHouseholdResponse = new GetHouseholdResponse();
-		String serializedResult = "";
-		
-		/*
-		 * Return the result
-		 */
-		return serializedResult;
 	}
 }

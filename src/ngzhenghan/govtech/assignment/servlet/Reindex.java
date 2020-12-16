@@ -32,18 +32,12 @@ public class Reindex extends HttpServlet 	{
 
 		SearchManager.reindex();
 		
-		Utility.printDebugStatement("create success, printing response");
 		try(PrintWriter writer = givenResponse.getWriter();) 
 		{
-			Utility.printDebugStatement("setting content type to plain text");
 			givenResponse.setContentType("text/plain");
-			Utility.printDebugStatement("setting encoding type to utf-8");
 			givenResponse.setCharacterEncoding("UTF-8");
-			Utility.printDebugStatement("creating content");
 			writer.println("reindex: " + "completed");
-			Utility.printDebugStatement("flushing");
 			writer.flush();
-			Utility.printDebugStatement("flushed");
 		} 
 		catch (IOException e) 
 		{

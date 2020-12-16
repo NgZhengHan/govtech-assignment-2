@@ -47,7 +47,6 @@ public class SearchHouseholdByGrant  extends HttpServlet {
 		 */
 		String requestBody = givenRequest.getParameter(PARAMETER_REQUEST_BODY);
 
-		Utility.printDebugStatement("requestBody: " + requestBody);
 		/*
 		 * The result in serialized form
 		 */
@@ -86,20 +85,15 @@ public class SearchHouseholdByGrant  extends HttpServlet {
 			serializedResult = HouseholdManager.searchByHousehold(searchHouseholdRequest);
 		}
 
-		Utility.printDebugStatement("finished searching");
-
 		/*
 		 * Send the details of the created object back to the client
 		 */
 		try(PrintWriter writer = givenResponse.getWriter();) 
 		{
-			Utility.printDebugStatement("setting content type");
 			givenResponse.setContentType("text/plain");
-			Utility.printDebugStatement("setting encoding");
 			givenResponse.setCharacterEncoding("UTF-8");
 			writer.println("search result: ");
 			writer.println("" + serializedResult);
-			Utility.printDebugStatement("setting encoding");
 			writer.println("" + serializedResult);
 			writer.flush();
 		} 

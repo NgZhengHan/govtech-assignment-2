@@ -32,8 +32,6 @@ public class TestCreateHousehold extends HttpServlet 	{
 	
 	@Override
 	protected void doGet (HttpServletRequest givenRequest, HttpServletResponse givenResponse) 	{
-
-		Utility.printDebugStatement("doGet");
 		
 		Household household = new Household();
 		household.setDeleted(false);
@@ -41,23 +39,11 @@ public class TestCreateHousehold extends HttpServlet 	{
 		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/household", 
 												null, 
 												household);
-//		printTestBuilder(household);
 		
 		/*
 		 * Use the entity manager to perform the operation
 		 */
-		Utility.printDebugStatement("try create");
 		Long result = HouseholdManager.createHousehold(household);
-
-
-		if(null == result)
-		{
-			Utility.printDebugStatement("create failed");
-		}
-		else
-		{
-			Utility.printDebugStatement("create success");
-		}
 		
 		/*
 		 * If there was any error, the result would be null
@@ -80,22 +66,13 @@ public class TestCreateHousehold extends HttpServlet 	{
 		}
 		else
 		{
-			Utility.printDebugStatement("create success, printing response ");
 			try(PrintWriter writer = givenResponse.getWriter();) 
 			{
-				Utility.printDebugStatement("setting content type to json");
 				givenResponse.setContentType("application/json");
-				Utility.printDebugStatement("setting content type to plain text");
-//				givenResponse.setContentType("text/plain");
-				Utility.printDebugStatement("setting encoding type to utf-8");
 				givenResponse.setCharacterEncoding("UTF-8");
-				Utility.printDebugStatement("creating content");
 				writer.println("id of created entity: " + result.toString());
-				Utility.printDebugStatement("creating content json");
 				writer.println("Details: " + SerializationUtility.toJson(household));
-				Utility.printDebugStatement("flushing");
 				writer.flush();
-				Utility.printDebugStatement("flushed");
 			} 
 			catch (IOException e) 
 			{
@@ -106,15 +83,5 @@ public class TestCreateHousehold extends HttpServlet 	{
 			}
 		}
 	}
-	
-//	public void printTestBuilder(Object object) 	{
-//		
-//		List<NameValuePair> parameters = new ArrayList<>();
-//		parameters.add(new BasicNameValuePair("request.body", SerializationUtility.toJson(object)));
-//		HttpPost httpPost = Utility.createHttpPost("http://localhost:8080/govtech-assignment-2/household", parameters, null);
-//
-//		Utility.printDebugStatement("created uri");
-//			
-//		Utility.printDebugStatement(httpPost.getURI().toString());
-//	}
+
 }

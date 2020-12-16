@@ -73,22 +73,14 @@ public class AddMembers extends HttpServlet {
 		}
 		else
 		{
-			Utility.printDebugStatement("create success, printing response");
 			try(PrintWriter writer = givenResponse.getWriter();) 
 			{
-				Utility.printDebugStatement("setting content type to json");
 //				givenResponse.setContentType("application/json");
-				Utility.printDebugStatement("setting content type to plain text");
 				givenResponse.setContentType("text/plain");
-				Utility.printDebugStatement("setting encoding type to utf-8");
 				givenResponse.setCharacterEncoding("UTF-8");
-				Utility.printDebugStatement("creating content");
 				writer.println("Created: " + result.toString());
-				Utility.printDebugStatement("creating content json");
 				writer.println("Details: " + SerializationUtility.toJson(householdMemberMapping));
-				Utility.printDebugStatement("flushing");
 				writer.flush();
-				Utility.printDebugStatement("flushed");
 			} 
 			catch (IOException e) 
 			{

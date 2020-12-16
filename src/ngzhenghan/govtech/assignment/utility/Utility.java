@@ -147,8 +147,6 @@ public class Utility {
 		
 		HttpPost httpPost = Utility.createHttpPost(givenURL, parameters, null);
 
-		Utility.printDebugStatement("created uri");
-			
 		Utility.printDebugStatement(httpPost.getURI().toString());
 	}
 

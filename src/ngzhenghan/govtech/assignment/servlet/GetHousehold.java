@@ -44,9 +44,7 @@ public class GetHousehold extends HttpServlet {
 		 */
 		String requestBody = givenRequest.getParameter(PARAMETER_REQUEST_BODY);
 		String requestType = givenRequest.getParameter(PARAMETER_REQUEST_TYPE);
-
-		Utility.printDebugStatement("requestBody: " + requestBody);
-		Utility.printDebugStatement("requestType: " + requestType);
+		
 		/*
 		 * The result in serialized form
 		 */
@@ -74,19 +72,15 @@ public class GetHousehold extends HttpServlet {
 			 */
 			serializedResult = HouseholdManager.getSomeHouseholds(getHouseholdRequest);
 		}
-		Utility.printDebugStatement("finished getting");
 
 		/*
 		 * Send the details of the created object back to the client
 		 */
 		try(PrintWriter writer = givenResponse.getWriter();) 
 		{
-			Utility.printDebugStatement("setting content type");
 			givenResponse.setContentType("text/plain");
-			Utility.printDebugStatement("setting encoding");
 			givenResponse.setCharacterEncoding("UTF-8");
 			writer.println("search result: ");
-			Utility.printDebugStatement("setting encoding");
 			writer.println("" + serializedResult);
 			writer.flush();
 		} 
