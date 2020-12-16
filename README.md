@@ -39,7 +39,7 @@ Right now, there is only a spousal relationship. This relationship resides in a 
 For example, the GetHousehold end-point is designed to actually be able to cater to querying a list of Household Ids, instead of exactly just 1 Id. By designing it this way, the same service can be used for more than just querying 1 specific Id.   
   
 8.  Lucene Search  
-I wanted to implement Lucene search to improve on the get/search features. However, due to time constraints, I prioritized the other features first. Luence search and index would improve the system performance when the database grows big. Also, it gives us additional tools to do composite searches.  
+I wanted to implement Lucene search to improve on the get/search features. However, due to time constraints, I prioritized the other features first. Luence search and index would improve the system performance when the database grows big. Also, it gives us additional tools to do advance searches, such full/partial text search, fuzzy searches etc. which are particularly useful for finding names or addresses etc.    
   
 9.  Delete feature and filters  
 Similar to Lucene Search, this was reprioritzed. You may find some remnants of it, such as a `notDeleted` filter in the Hibernate files. The database elements are not removed from the table upon a `delete` operation. Instead, a `deleted` flag would be set. This is for archiving and audting purposes. Additionally, the elements should also be tagged with several helper fields, representing when it was originally created, when was it modified, by who, and when was it deleted. Some other logging features can be tweaked or included that can help in this feature, such as recovery from a `delete` operation.  
