@@ -91,4 +91,4 @@ Email | Password
 ------------ | -------------
 govtech.assignment@ngzhenghan.com | govtech!
 
-This should load several prepared HTTP GET and POST requests. Go to `Collections` tab on the left to find them. Please wait for a while as they load in the backgroun. Currently they do no have any UI indication that it is loading the saved data.  
+This should load several prepared HTTP GET and POST requests. Go to `Collections` tab on the left to find them. Please wait for a while as they load in the background. Currently they do no have any UI indication that it is loading the saved data.  
