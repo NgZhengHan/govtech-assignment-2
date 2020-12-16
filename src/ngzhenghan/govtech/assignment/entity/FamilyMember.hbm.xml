@@ -13,6 +13,7 @@
 		<property name="occupationTypeOrdinal" column="occupation_type_ordinal"/>
 		<property name="annualIncome" column="annual_income"/>
 		<property name="dateOfBirth" column="date_of_birth"/>
+		<property name="spouseId" column="spouse_id"/>
 		
 		<set name="households" table="household_members_mapping_table" cascade="all">
 			<key column="family_member_id"/>

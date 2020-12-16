@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
-import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
-import ngzhenghan.govtech.assignment.search.request.SearchHouseholdByGrantSchemeRequest;
 import ngzhenghan.govtech.assignment.search.request.SearchHouseholdRequest;
 import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;

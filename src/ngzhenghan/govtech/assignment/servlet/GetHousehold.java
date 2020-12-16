@@ -5,20 +5,13 @@ package ngzhenghan.govtech.assignment.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
-import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
 import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
-import ngzhenghan.govtech.assignment.rest.response.GetHouseholdResponse;
 import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 

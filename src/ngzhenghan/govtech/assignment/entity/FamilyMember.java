@@ -45,6 +45,7 @@ public class FamilyMember {
 	private Integer genderOrdinal = null;
 	private MaritalStatus maritalStatus = MaritalStatus.UNDEFINED;
 	private Integer maritalStatusOrdinal = null;
+	private Long spouseId = null;
 	private OccupationType occupationType = OccupationType.UNDEFINED;
 	private Integer occupationTypeOrdinal = null;
 	private Double annualIncome = null;
@@ -140,6 +141,14 @@ public class FamilyMember {
 	public void setMaritalStatusOrdinal(Integer maritalStatusOrdinal) {
 		this.maritalStatusOrdinal = maritalStatusOrdinal;
 		maritalStatus = MaritalStatus.values[maritalStatusOrdinal];
+	}
+
+	public Long getSpouseId() {
+		return spouseId;
+	}
+	
+	public void setSpouseId(Long spouseId) {
+		this.spouseId = spouseId;
 	}
 
 	public Set<FamilyMember> getSpouses() {
