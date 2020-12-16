@@ -69,3 +69,26 @@ This is because the project is configured to run with wildfly in the path `C:\Go
 7. Navigate to the database backup provided in this repository. If you used the same path as I did, it should be `C:\Govtech\Git_Repositories\govtech-assignment-2\database_backup\assignment_2_database_backup20201216_3.sql`. If you cannot find the file, make sure to change the `format` at the bottom right to `sql`  
 8. Click on `Restore`  
 9. After the database is restored, you should be able to find several tables. For example, the Table `family_members` should have some content  
+
+### Import the project into Eclipse  
+> https://www.eclipse.org/
+1. Install Eclipse from the official site or from the Google Drive
+2. Import the project into Eclipse  
+  
+  
+### Create a Wildfly Server in Eclipse
+1. Run Eclipse
+2. Install the JBoss Tools from the Eclipse Marketplace 
+3. Open the `Servers` tab and create a Wildfly 21 server if it does not exist. Point to the Wildfly 21 folder that you downloaded from this repository. Bind the project to this server. 
+4. You should be able to run the project on this Wildfly server
+
+
+### Install Postman
+> https://www.postman.com/  
+Install Postman from the official site, or from the Google Drive. After installing the Postman application, launch it. When prompted to sign in, use 
+
+Email | Password
+------------ | -------------
+govtech.assignment@ngzhenghan.com | govtech!
+
+This should load several prepared HTTP GET and POST requests. Go to `Collections` tab on the left to find them. Please wait for a while as they load in the backgroun. Currently they do no have any UI indication that it is loading the saved data.  
