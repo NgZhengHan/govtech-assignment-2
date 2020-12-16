@@ -8,9 +8,17 @@
         <property name="hibernate.connection.password">govtech</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/assignment_2_database</property>
         <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">govtech</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.search.default.directory_provider">filesystem</property>
+        <property name="hibernate.search.default.indexBase">indexes</property>
         
-        <mapping resource = "ngzhenghan/govtech/assignment/entity/Household.hbm.xml"/>
-        <mapping resource = "ngzhenghan/govtech/assignment/entity/FamilyMember.hbm.xml"/>
+        <mapping resource="ngzhenghan/govtech/assignment/entity/Filters.hbm.xml"/>
+        
+        <mapping resource="ngzhenghan/govtech/assignment/entity/Household.hbm.xml"/>
+        <mapping resource="ngzhenghan/govtech/assignment/entity/FamilyMember.hbm.xml"/>
+        <mapping resource="ngzhenghan/govtech/assignment/entity/HouseholdMember.hbm.xml"/>
+        <mapping resource="ngzhenghan/govtech/assignment/entity/FamilyMemberSpouseMapping.hbm.xml"/>
+         
     </session-factory>
 </hibernate-configuration>
