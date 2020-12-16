@@ -3,6 +3,7 @@
  */
 package ngzhenghan.govtech.assignment.entity;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -63,6 +64,28 @@ public class FamilyMember {
 	 */
 	public FamilyMember () 	{
 		
+	}
+	
+	/**
+	 * Helper method to find the age using the date of birth. The age is 
+	 * found relative to the current system time
+	 * 
+	 * @return The age if there is a date of birth. Returns null if there is no date of birth
+	 */
+	public Double findAge () 	{
+		
+		Double age = null;
+		
+		if(null != dateOfBirth)
+		{
+			Date now = new Date();
+			
+			long ageLong = ChronoUnit.YEARS.between(now.toInstant(), dateOfBirth.toInstant());
+			
+			age = Double.valueOf((double)ageLong);
+		}
+		
+		return age;
 	}
 
 	/*

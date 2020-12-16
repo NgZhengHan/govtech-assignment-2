@@ -3,6 +3,9 @@
  */
 package ngzhenghan.govtech.assignment.search.request;
 
+import java.util.Set;
+
+import ngzhenghan.govtech.assignment.entity.FamilyMember;
 import ngzhenghan.govtech.assignment.entity.Household;
 
 /**
@@ -32,6 +35,7 @@ public class SearchHouseholdRequest {
 		 * For readablity, put it line by line
 		 */
 		passAllConditions = passAllConditions && checkTotalIncomeLessThan(givenHousehold);
+		passAllConditions = passAllConditions && checkWithMembersUnder(givenHousehold);
 		
 		return passAllConditions;
 	}
@@ -57,6 +61,40 @@ public class SearchHouseholdRequest {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Helper method to check if the given Household meets the criteria 
+	 * 
+	 * @param givenHousehold The Household to use to check against the conditions
+	 * @return If the Household passes the condition, return true. If it fails, then return false. If the condition is null, return true.
+	 */
+	private boolean checkWithMembersUnder (Household givenHousehold) 	{
+		
+		if(null == withMembersUnder)
+		{
+			return true;
+		}
+		
+		Set<FamilyMember> householdMembers = givenHousehold.getHouseholdMembers();
+		
+		if(null == householdMembers)
+		{
+			return false;
+		}
+
+		for(FamilyMember householdMember : householdMembers)
+		{
+			Double age = householdMember.findAge();
+			
+			if(null != age
+					&& (age < withMembersUnder))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	/**
