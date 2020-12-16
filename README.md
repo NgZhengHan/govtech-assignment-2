@@ -7,11 +7,30 @@ Operating System | Windows 10 pro
 Database| postgresql latest docker image on Docker Hub
 Database platform| Docker 3.0.0
 Database management tool| pgAdmin 4
+ORM | Hibernate 5
 Application server| Wildfly 21
 IDE | Eclipse jee 2020 09
 Language | Java 14
 Tool to help with REST calls | Postman
+Data format | JSON
 
+## Declarations and Assumptions
+Requirements 1 to 5 have been attempted. Due to time constraints with my current job, I have only been able to develop them on a very basic level and have not tested them rigorously. I would like to make some declarations and assumptions about the projects:  
+  
+1.  Future work/improvements  
+Many of the features in this project can be improved. I will describe some of my ideas below:
+
+2.  JSON format  
+I made the assumption that this app server would be used with a client app that would handle interfacing with the REST end-points. Both the client and the server would transfer data in JSON format. Because of this assumption, data, such as family members' field values, is packed in JSON format. This can still be edited from the URL, but keep in mind that they have to be represented in JSON format. I have tried to keep the field names humand-readable to facilitate this manual change if needed. Alternatively you can use the saved requests on Postman (see below) to interact with the end-points. You can also use the online tool (https://onlinejsontools.com/url-encode-json) to convert human-readable json to url encoding. The user-experience for this can be improved with an application that helps format the data between JSON and a form that is easy for humans to interpret and use, for example a graphical user interface. 
+  
+3.  Using enum ordinals instead of Strings  
+I try to store enums using their ordinals in an attempt to marginally improve efficiency and to future-proof the database. Ordinals are cheaper to store and they are gauranteed to be unique. When using Strings, case sensitivity and typos increase the risk of errors. While not much use is made of the enums and ordinals so far in this project, I would like to offer some thinking behind this choice.     
+  
+4.  Create Household end-point  
+This end-point would take in a Household that is serialized into JSON format and add it to the database. Right now it only stores an auto-generated primary key and the ordinal of the housing type. There is an assumption that every household is unqiue, even if their contents (except the auto-generated primary key) are the same. An improvement that can be made to this feature is to validate the contents of the would-be household. For example, if the address and unit numbers clash with another item that already exists, then we want to be able to identify if this is a duplicate, or make a distinction that there are multiple households living in the same unit (I note that the assignment document did indicate that the assumption is that these would be considered the same household)     
+  
+5.  End-point to create a family member  
+This end-point will take in a JSON serialized object that describes the family member. For now, this does not automatically map the spousal relationships. 
 
 
 ## How to set up
