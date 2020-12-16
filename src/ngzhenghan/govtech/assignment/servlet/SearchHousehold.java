@@ -19,8 +19,7 @@ import ngzhenghan.govtech.assignment.utility.Utility;
 /**
  * @author Ng Zheng Han
  *
- * Servlet to search for Households. Can search based on some criteria, or 
- * by certain schemes
+ * Servlet to search for Households. Can search based on some criteria
  */
 
 @WebServlet(name = "SearchHousehold", urlPatterns = "/search/households")
@@ -58,7 +57,7 @@ public class SearchHousehold  extends HttpServlet {
 		 */
 		serializedResult = HouseholdManager.searchByHousehold(searchHouseholdRequest);
 
-		Utility.printDebugStatement("finished getting");
+		Utility.printDebugStatement("finished searching");
 
 		/*
 		 * Send the details of the created object back to the client

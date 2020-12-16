@@ -9,8 +9,8 @@
 		</id>
 		
 		<properties name="unique_key_2" unique="true">
-			<property name="familyMemberA" column="family_member_id_a" unique-key="unique_key_2"/>
-			<property name="familyMemberB" column="family_member_id_b" unique-key="unique_key_2"/>
+			<property name="familyMemberAId" column="family_member_id_a" unique-key="unique_key_2"/>
+			<property name="familyMemberBId" column="family_member_id_b" unique-key="unique_key_2"/>
 		</properties>
 		
 		<filter name="notDeleted"/>
