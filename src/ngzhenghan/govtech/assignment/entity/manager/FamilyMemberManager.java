@@ -3,18 +3,12 @@
  */
 package ngzhenghan.govtech.assignment.entity.manager;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.hibernate.Session;
 
 import ngzhenghan.govtech.assignment.entity.FamilyMember;
 import ngzhenghan.govtech.assignment.entity.FamilyMemberSpouseMapping;
-import ngzhenghan.govtech.assignment.entity.HouseholdMember;
 import ngzhenghan.govtech.assignment.entity.dataaccessobject.FamilyMemberDao;
 import ngzhenghan.govtech.assignment.entity.dataaccessobject.FamilyMemberSpouseMappingDao;
-import ngzhenghan.govtech.assignment.entity.dataaccessobject.HouseholdMemberDao;
 import ngzhenghan.govtech.assignment.hibernate.HibernateUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
