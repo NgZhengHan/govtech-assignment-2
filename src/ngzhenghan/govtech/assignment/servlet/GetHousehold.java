@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
+import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
 import ngzhenghan.govtech.assignment.rest.response.GetHouseholdResponse;
 import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
@@ -71,14 +72,14 @@ public class GetHousehold extends HttpServlet {
 		else if(REQUEST_TYPE_GET_SOME.equals(requestType))
 		{
 			/*
-			 * Get some, or get just 1
+			 * Deserialize the request body
 			 */
-			List<Long> idList = SerializationUtility.fromJson(requestBody, new TypeReference<List<Long>>() {});
+			GetHouseholdRequest getHouseholdRequest = SerializationUtility.fromJson(requestBody, GetHouseholdRequest.class);
 			
 			/*
 			 * Use the manager to get the result
 			 */
-			householdList = HouseholdManager.getHouseholds(idList);
+			serializedResult = HouseholdManager.getAllHouseholds(getHouseholdRequest);
 		}
 		Utility.printDebugStatement("finished getting");
 

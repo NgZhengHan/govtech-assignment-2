@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import ngzhenghan.govtech.assignment.entity.Household;
 import ngzhenghan.govtech.assignment.entity.dataaccessobject.HouseholdDao;
 import ngzhenghan.govtech.assignment.hibernate.HibernateUtility;
+import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
 import ngzhenghan.govtech.assignment.rest.response.GetHouseholdResponse;
 import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
@@ -136,6 +137,68 @@ public class HouseholdManager {
 			Root<Household> rootEntry = criteriaQuery.from(Household.class);
 			CriteriaQuery<Household> queryAll = criteriaQuery.select(rootEntry);
 			TypedQuery<Household> typedQuery = session.createQuery(queryAll);
+
+			Utility.printDebugStatement("created query");
+			/*
+			 * Perform the query
+			 */
+			List<Household> resultList = typedQuery.getResultList();
+			getHouseholdResponse.setHouseHolds(resultList);
+			Utility.printDebugStatement("performed query");
+			
+			/*
+			 * Initialize the results in order to get their embedded entities
+			 */
+			for(Household household : resultList)
+			{
+				Utility.printDebugStatement("initialize household[" + household.getId() + "]");
+				Hibernate.initialize(household);
+			}
+			
+			/*
+			 * Serialize the result while we still have the session
+			 */
+			Utility.printDebugStatement("resultList.size(): " + resultList.size());
+			Utility.printDebugStatement("getHouseholdResponse.getHouseHolds().size(): " + getHouseholdResponse.getHouseHolds().size());
+			serializedResult = SerializationUtility.toJson(getHouseholdResponse);
+			Utility.printDebugStatement("serializedResult: " + serializedResult);
+		}
+		catch (Exception exception) 	
+		{
+			/*
+			 * Use logger here
+			 */
+			Utility.printDebugStatement("Exception");
+		}
+		
+		/*
+		 * Return the result
+		 */
+		return serializedResult;
+	}
+	
+	public static String getAllHouseholds (GetHouseholdRequest givenGetRequest) 	{
+
+		Utility.printDebugStatement("getSomeHouseholds");
+		GetHouseholdResponse getHouseholdResponse = new GetHouseholdResponse();
+		String serializedResult = "";
+
+		/*
+		 * Create a session
+		 */
+		try(Session session = HibernateUtility.openSession())
+		{
+			Utility.printDebugStatement("created session");
+			
+			/*
+			 * Build the query
+			 */
+			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+			CriteriaQuery<Household> criteriaQuery = criteriaBuilder.createQuery(Household.class);
+			Root<Household> rootEntry = criteriaQuery.from(Household.class);
+
+			criteriaQuery = criteriaQuery.select(rootEntry);
+			TypedQuery<Household> typedQuery = session.createQuery(criteriaQuery);
 
 			Utility.printDebugStatement("created query");
 			/*
