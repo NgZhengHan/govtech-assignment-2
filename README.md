@@ -41,5 +41,9 @@ Download and install pgAdmin either from the official site (linked above) or fro
 ### Connect to the postgres container
 After installing pgAdmin, run pgAdmin.  
 Your browser should launch and bring you to the pgAdmin UI.  
-On the left side, you should see something similar to a file structure. Right click on `Servers` -> `Create` -> `Server`
-
+On the left side, you should see something similar to a file structure. Right click on `Servers` -> `Create` -> `Server`  
+A new window should appear. For the `Name` field, put in `govtech_postgres`  
+Go to the `Connection` tab. For `Host name/address`, type in `localhost`  
+For `Password`, type in `govtech`  
+Leave the other fields unchanged  
+Click `Save` at the bottom right  
