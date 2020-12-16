@@ -27,10 +27,23 @@ I made the assumption that this app server would be used with a client app that 
 I try to store enums using their ordinals in an attempt to marginally improve efficiency and to future-proof the database. Ordinals are cheaper to store and they are gauranteed to be unique. When using Strings, case sensitivity and typos increase the risk of errors. While not much use is made of the enums and ordinals so far in this project, I would like to offer some thinking behind this choice.     
   
 4.  Create Household end-point  
-This end-point would take in a Household that is serialized into JSON format and add it to the database. Right now it only stores an auto-generated primary key and the ordinal of the housing type. There is an assumption that every household is unqiue, even if their contents (except the auto-generated primary key) are the same. An improvement that can be made to this feature is to validate the contents of the would-be household. For example, if the address and unit numbers clash with another item that already exists, then we want to be able to identify if this is a duplicate, or make a distinction that there are multiple households living in the same unit (I note that the assignment document did indicate that the assumption is that these would be considered the same household)     
+This end-point would take in a Household that is serialized into JSON format and add it to the database. Right now it only stores an auto-generated primary key and the ordinal of the housing type. There is an assumption that every household is unqiue, even if their contents (except the auto-generated primary key) are the same. An improvement that can be made to this feature is to validate the contents of the would-be household. For example, if the address and unit numbers clash with another item that already exists, then we want to be able to identify if this is a duplicate, or make a distinction that there are multiple households living in the same unit (I note that the assignment document did indicate that the assumption is that these would be considered the same household). Further, this end-point can be improved to also take in family member id or family member details, and autmatically link them up. In the even when we want to create brand-new households, including family members, this end-point can be tweaked to facilitate this need.      
   
 5.  End-point to create a family member  
-This end-point will take in a JSON serialized object that describes the family member. For now, this does not automatically map the spousal relationships. 
+This end-point will take in a JSON serialized object that describes the family member. For now, this does not automatically map the spousal relationships. An improvement to this can be to automatically map the spousal and household relationships. Additionally, this can be improved to create multiple family members if they come in as a batch.  
+  
+6.  Family member relationships  
+Right now, there is only a spousal relationship. This relationship resides in a separate table which can be expanded to include other relationships such as father-son, brother-sister, next-of-kin, date-of-marriage, date-of-separation/divorce etc. There is a separate class and mapping to facilitate this feature. Additionally, spousal relationships are described as a `set`. This open-ended relationship mapping leaves the option open for cases when a person may have more than one spouse, for example having concurrent multiple spouses. While this is not allowed in Singapore context, we can discuss if policy/process should be designed into a system.      
+  
+7.  "One" is part of "some"    
+For example, the GetHousehold end-point is designed to actually be able to cater to querying a list of Household Ids, instead of exactly just 1 Id. By designing it this way, the same service can be used for more than just querying 1 specific Id.   
+  
+8.  Lucene Search  
+I wanted to implement Lucene search to improve on the get/search features. However, due to time constraints, I prioritized the other features first. Luence search and index would improve the system performance when the database grows big. Also, it gives us additional tools to do composite searches.  
+  
+9.  Delete feature and filters  
+Similar to Lucene Search, this was reprioritzed. You may find some remnants of it, such as a `notDeleted` filter in the Hibernate files. The database elements are not removed from the table upon a `delete` operation. Instead, a `deleted` flag would be set. This is for archiving and audting purposes. Additionally, the elements should also be tagged with several helper fields, representing when it was originally created, when was it modified, by who, and when was it deleted. Some other logging features can be tweaked or included that can help in this feature, such as recovery from a `delete` operation.  
+
 
 
 ## How to set up
