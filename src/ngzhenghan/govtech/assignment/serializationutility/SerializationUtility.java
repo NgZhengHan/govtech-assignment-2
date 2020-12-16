@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ngzhenghan.govtech.assignment.serialization;
+package ngzhenghan.govtech.assignment.serializationutility;
 
 import java.io.IOException;
 import java.text.DateFormat;

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
 import ngzhenghan.govtech.assignment.search.request.SearchHouseholdRequest;
-import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
+import ngzhenghan.govtech.assignment.serializationutility.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**

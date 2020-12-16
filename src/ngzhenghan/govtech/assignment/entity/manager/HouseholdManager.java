@@ -23,7 +23,7 @@ import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
 import ngzhenghan.govtech.assignment.rest.response.GetHouseholdResponse;
 import ngzhenghan.govtech.assignment.search.request.SearchHouseholdRequest;
 import ngzhenghan.govtech.assignment.search.response.SearchHouseholdResponse;
-import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
+import ngzhenghan.govtech.assignment.serializationutility.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**

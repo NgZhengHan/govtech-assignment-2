@@ -17,7 +17,7 @@ import ngzhenghan.govtech.assignment.entity.enums.Gender;
 import ngzhenghan.govtech.assignment.entity.enums.MaritalStatus;
 import ngzhenghan.govtech.assignment.entity.enums.OccupationType;
 import ngzhenghan.govtech.assignment.entity.manager.FamilyMemberManager;
-import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
+import ngzhenghan.govtech.assignment.serializationutility.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
