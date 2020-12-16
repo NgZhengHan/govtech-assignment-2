@@ -135,8 +135,9 @@ public class HouseholdManager {
 			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 			CriteriaQuery<Household> criteriaQuery = criteriaBuilder.createQuery(Household.class);
 			Root<Household> rootEntry = criteriaQuery.from(Household.class);
-			CriteriaQuery<Household> queryAll = criteriaQuery.select(rootEntry);
-			TypedQuery<Household> typedQuery = session.createQuery(queryAll);
+			
+			criteriaQuery = criteriaQuery.select(rootEntry);
+			TypedQuery<Household> typedQuery = session.createQuery(criteriaQuery);
 
 			Utility.printDebugStatement("created query");
 			/*
