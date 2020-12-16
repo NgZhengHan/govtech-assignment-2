@@ -16,6 +16,10 @@ public class HouseholdMemberMapping {
 	
 	Map<Long, List<Long>> householdIdsToFamilyMemberIds = new HashMap<>();
 	Map<Long, List<Long>> familyMemberIdsToHouseholdIdsTo = new HashMap<>();
+	
+	public HouseholdMemberMapping () 	{
+		
+	}
 
 	/**
 	 * @return the householdIdsToFamilyMemberIds

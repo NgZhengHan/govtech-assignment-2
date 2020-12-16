@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="ngzhenghan.govtech.assignment.entity">
+	<class name="FamilyMemberSpouseMapping" dynamic-update="true" schema="public" table="family_member_spouse_mapping_table">
+		<id name="id" column="id">
+			<generator class="sequence">
+				<param name="sequence_name">family_member_spouse_mapping_id_sequence</param>
+			</generator>
+		</id>
+		
+		<properties name="unique_key_2" unique="true">
+			<property name="familyMemberA" column="family_member_id_a" unique-key="unique_key_2"/>
+			<property name="familyMemberB" column="family_member_id_b" unique-key="unique_key_2"/>
+		</properties>
+		
+		<filter name="notDeleted"/>
+	</class>
+</hibernate-mapping>
