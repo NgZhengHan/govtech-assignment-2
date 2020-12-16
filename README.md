@@ -14,5 +14,11 @@ Tool to help with REST calls | Postman
 
 
 # How to set up
-## Postgreql on Docker
-We are using postgresql as our database. This database will be containerized and on Docker
+
+## COTS folder on Google Drive
+>https://drive.google.com/drive/folders/15yNNK_0nusUUHt0OLmhvoS1RnaM1xtQu?usp=sharing
+
+Use the above link to google drive to find the installers for the COTS used in this project. Alternatively, if you choose to download it directly from the official websites, the links will be provided in the relevant sections.
+
+## Download Docker
+
