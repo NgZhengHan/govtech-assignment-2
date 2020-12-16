@@ -5,15 +5,19 @@ package ngzhenghan.govtech.assignment.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ngzhenghan.govtech.assignment.entity.Household;
-import ngzhenghan.govtech.assignment.entity.enums.HousingType;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import ngzhenghan.govtech.assignment.entity.manager.HouseholdManager;
-import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
+import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
 /**
@@ -22,41 +26,47 @@ import ngzhenghan.govtech.assignment.utility.Utility;
  * Helper class to test
  */
 
-@WebServlet(name = "TestCreateHousehold", urlPatterns = "/test/create-household")
-public class TestCreateHousehold extends HttpServlet 	{
+@WebServlet(name = "TestGetHousehold", urlPatterns = "/test/get-household")
+public class TestGetHousehold extends HttpServlet 	{
 
 	/**
 	 * Generated serial
 	 */
-	private static final long serialVersionUID = -4478714367826394267L;
+	private static final long serialVersionUID = -2519489921995817615L;
+
 	
 	@Override
 	protected void doGet (HttpServletRequest givenRequest, HttpServletResponse givenResponse) 	{
 
 		Utility.printDebugStatement("doGet");
+
+		GetHouseholdRequest getHouseholdRequest = new GetHouseholdRequest();
+		List<NameValuePair> parameters = new ArrayList<>();
+		parameters.add(new BasicNameValuePair("request.type", "get.some"));
 		
-		Household household = new Household();
-		household.setDeleted(false);
-		household.setHousingType(HousingType.CONDOMINIUM);
+		List<Long> householdIds = getHouseholdRequest.getHouseholdIds();
+		householdIds.add(Long.valueOf("4"));
+		householdIds.add(Long.valueOf("5"));
+		householdIds.add(Long.valueOf("1"));
+		
 		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/household", 
-												null, 
-												household);
-//		printTestBuilder(household);
+												parameters, 
+												getHouseholdRequest);
 		
 		/*
 		 * Use the entity manager to perform the operation
 		 */
-		Utility.printDebugStatement("try create");
-		Long result = HouseholdManager.createHousehold(household);
+		Utility.printDebugStatement("try get");
+		String result = HouseholdManager.getAllHouseholds(getHouseholdRequest);
 
 
 		if(null == result)
 		{
-			Utility.printDebugStatement("create failed");
+			Utility.printDebugStatement("get failed");
 		}
 		else
 		{
-			Utility.printDebugStatement("create success");
+			Utility.printDebugStatement("get success");
 		}
 		
 		/*
@@ -80,7 +90,7 @@ public class TestCreateHousehold extends HttpServlet 	{
 		}
 		else
 		{
-			Utility.printDebugStatement("create success, printing response ");
+			Utility.printDebugStatement("get success, printing response ");
 			try(PrintWriter writer = givenResponse.getWriter();) 
 			{
 				Utility.printDebugStatement("setting content type to json");
@@ -90,9 +100,9 @@ public class TestCreateHousehold extends HttpServlet 	{
 				Utility.printDebugStatement("setting encoding type to utf-8");
 				givenResponse.setCharacterEncoding("UTF-8");
 				Utility.printDebugStatement("creating content");
-				writer.println("id of created entity: " + result.toString());
+				writer.println("get results: ");
 				Utility.printDebugStatement("creating content json");
-				writer.println("Details: " + SerializationUtility.toJson(household));
+				writer.println("Details: " + result);
 				Utility.printDebugStatement("flushing");
 				writer.flush();
 				Utility.printDebugStatement("flushed");
@@ -107,14 +117,4 @@ public class TestCreateHousehold extends HttpServlet 	{
 		}
 	}
 	
-//	public void printTestBuilder(Object object) 	{
-//		
-//		List<NameValuePair> parameters = new ArrayList<>();
-//		parameters.add(new BasicNameValuePair("request.body", SerializationUtility.toJson(object)));
-//		HttpPost httpPost = Utility.createHttpPost("http://localhost:8080/govtech-assignment-2/household", parameters, null);
-//
-//		Utility.printDebugStatement("created uri");
-//			
-//		Utility.printDebugStatement(httpPost.getURI().toString());
-//	}
 }

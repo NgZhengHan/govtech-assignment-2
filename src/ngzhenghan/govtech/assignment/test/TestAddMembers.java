@@ -48,7 +48,9 @@ public class TestAddMembers extends HttpServlet 	{
 		familyMemberIds.add(Long.valueOf("4"));
 		householdMembers.put(Long.valueOf("4"), familyMemberIds);
 		
-		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/add-members", householdMemberMapping);
+		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/add-members", 
+												null,
+												householdMemberMapping);
 		
 		/*
 		 * Use the entity manager to perform the operation

@@ -48,7 +48,9 @@ public class TestCreateFamilyMember extends HttpServlet 	{
 		familyMember.setName("John Doe");
 		familyMember.setOccupationType(OccupationType.EMPLOYED);
 		familyMember.setSpouse(null);
-		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/family-member", familyMember);
+		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/family-member", 
+												null, 
+												familyMember);
 		
 		/*
 		 * Use the entity manager to perform the operation

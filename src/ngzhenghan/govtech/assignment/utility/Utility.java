@@ -134,12 +134,17 @@ public class Utility {
 	 * httppost with a serialized Json of the given object as the "request.body"
 	 * parameter
 	 * 
-	 * @param object The object to be used for serializing into a json 
+	 * @param givenObject The object to be used for serializing into a json 
 	 */
-	public static void buildAndPrintHttpPostForObject(String givenURL, Object object) 	{
+	public static void buildAndPrintHttpPostForObject(String givenURL, List<NameValuePair> givenParameters, Object givenObject) 	{
 		
 		List<NameValuePair> parameters = new ArrayList<>();
-		parameters.add(new BasicNameValuePair("request.body", SerializationUtility.toJson(object)));
+		if(null != givenParameters)
+		{
+			parameters.addAll(givenParameters);
+		}
+		parameters.add(new BasicNameValuePair("request.body", SerializationUtility.toJson(givenObject)));
+		
 		HttpPost httpPost = Utility.createHttpPost(givenURL, parameters, null);
 
 		Utility.printDebugStatement("created uri");

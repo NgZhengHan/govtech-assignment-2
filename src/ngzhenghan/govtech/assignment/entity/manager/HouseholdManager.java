@@ -4,6 +4,7 @@
 package ngzhenghan.govtech.assignment.entity.manager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Hibernate;
+import org.hibernate.MultiIdentifierLoadAccess;
 import org.hibernate.Session;
 
 import ngzhenghan.govtech.assignment.entity.Household;
@@ -192,22 +194,31 @@ public class HouseholdManager {
 			Utility.printDebugStatement("created session");
 			
 			/*
-			 * Build the query
+			 * Get the list of id to find
 			 */
-			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-			CriteriaQuery<Household> criteriaQuery = criteriaBuilder.createQuery(Household.class);
-			Root<Household> rootEntry = criteriaQuery.from(Household.class);
-
-			criteriaQuery = criteriaQuery.select(rootEntry);
-			TypedQuery<Household> typedQuery = session.createQuery(criteriaQuery);
-
-			Utility.printDebugStatement("created query");
+			List<Long> idsToFind = givenGetRequest.getHouseholdIds();
+			
+			/*
+			 * Create the object that will help us get entities by id
+			 */
+			MultiIdentifierLoadAccess<Household> multiLoadAccess = session.byMultipleIds(Household.class);
+			Utility.printDebugStatement("created MultiIdentifierLoadAccess");
+			
 			/*
 			 * Perform the query
 			 */
-			List<Household> resultList = typedQuery.getResultList();
+			List<Household> resultList = multiLoadAccess.multiLoad(idsToFind);
 			getHouseholdResponse.setHouseHolds(resultList);
 			Utility.printDebugStatement("performed query");
+			
+			/*
+			 * Remove nulls from the list
+			 * 
+			 * Note:
+			 * This is because Hibernate will return null in the list 
+			 * for each time it cannot find an entity with the id
+			 */
+			resultList.removeAll(Collections.singleton(null));
 			
 			/*
 			 * Initialize the results in order to get their embedded entities
@@ -232,6 +243,7 @@ public class HouseholdManager {
 			 * Use logger here
 			 */
 			Utility.printDebugStatement("Exception");
+			exception.printStackTrace();
 		}
 		
 		/*
