@@ -57,7 +57,7 @@ public class TestGetHousehold extends HttpServlet 	{
 		 * Use the entity manager to perform the operation
 		 */
 		Utility.printDebugStatement("try get");
-		String result = HouseholdManager.getAllHouseholds(getHouseholdRequest);
+		String result = HouseholdManager.getSomeHouseholds(getHouseholdRequest);
 
 
 		if(null == result)

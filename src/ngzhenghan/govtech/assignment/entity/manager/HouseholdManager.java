@@ -21,6 +21,9 @@ import ngzhenghan.govtech.assignment.entity.dataaccessobject.HouseholdDao;
 import ngzhenghan.govtech.assignment.hibernate.HibernateUtility;
 import ngzhenghan.govtech.assignment.rest.request.GetHouseholdRequest;
 import ngzhenghan.govtech.assignment.rest.response.GetHouseholdResponse;
+import ngzhenghan.govtech.assignment.search.request.SearchHouseholdByGrantSchemeRequest;
+import ngzhenghan.govtech.assignment.search.request.SearchHouseholdRequest;
+import ngzhenghan.govtech.assignment.search.response.SearchHouseholdResponse;
 import ngzhenghan.govtech.assignment.serialization.SerializationUtility;
 import ngzhenghan.govtech.assignment.utility.Utility;
 
@@ -180,7 +183,13 @@ public class HouseholdManager {
 		return serializedResult;
 	}
 	
-	public static String getAllHouseholds (GetHouseholdRequest givenGetRequest) 	{
+	/**
+	 * Get Households by id
+	 * 
+	 * @param givenGetRequest A helper class that contins the Ids to search for
+	 * @return A serialized result of all the households found using the given ids
+	 */
+	public static String getSomeHouseholds (GetHouseholdRequest givenGetRequest) 	{
 
 		Utility.printDebugStatement("getSomeHouseholds");
 		GetHouseholdResponse getHouseholdResponse = new GetHouseholdResponse();
@@ -245,6 +254,101 @@ public class HouseholdManager {
 			Utility.printDebugStatement("Exception");
 			exception.printStackTrace();
 		}
+		
+		/*
+		 * Return the result
+		 */
+		return serializedResult;
+	}
+	
+	public static String searchByHousehold (SearchHouseholdRequest givenSearchSearchRequest) 	{
+
+		Utility.printDebugStatement("searchByHousehold");
+		SearchHouseholdResponse searchHouseholdResponse = new SearchHouseholdResponse();
+		String serializedResult = "";
+		
+		/*
+		 * Get all the households first
+		 */
+		/*
+		 * Create a session
+		 */
+		try(Session session = HibernateUtility.openSession())
+		{
+			Utility.printDebugStatement("created session");
+			
+			/*
+			 * Build the query
+			 */
+			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+			CriteriaQuery<Household> criteriaQuery = criteriaBuilder.createQuery(Household.class);
+			Root<Household> rootEntry = criteriaQuery.from(Household.class);
+			
+			criteriaQuery = criteriaQuery.select(rootEntry);
+			TypedQuery<Household> typedQuery = session.createQuery(criteriaQuery);
+
+			Utility.printDebugStatement("created query");
+			/*
+			 * Perform the query
+			 */
+			List<Household> allHouseholds = typedQuery.getResultList();
+			Utility.printDebugStatement("performed query");
+			
+			/*
+			 * Initialize the results in order to get their embedded entities
+			 */
+			for(Household household : allHouseholds)
+			{
+				Utility.printDebugStatement("initialize household[" + household.getId() + "]");
+				Hibernate.initialize(household);
+			}
+			
+			List<Household> resultList = pruneHouseholdListBySearchRequest(allHouseholds, givenSearchSearchRequest);
+			
+			/*
+			 * Serialize the result while we still have the session
+			 */
+			Utility.printDebugStatement("resultList.size(): " + resultList.size());
+			Utility.printDebugStatement("searchHouseholdResponse.getHouseHolds().size(): " + searchHouseholdResponse.getHouseHolds().size());
+			serializedResult = SerializationUtility.toJson(searchHouseholdResponse);
+			Utility.printDebugStatement("serializedResult: " + serializedResult);
+		}
+		catch (Exception exception) 	
+		{
+			/*
+			 * Use logger here
+			 */
+			Utility.printDebugStatement("Exception");
+		}
+		
+		/*
+		 * Return the result
+		 */
+		return serializedResult;
+	}
+	
+	private static List<Household> pruneHouseholdListBySearchRequest (List<Household> givenHouseholdList, SearchHouseholdRequest givenSearchSearchRequest) {
+		
+		List<Household> result = new ArrayList<>();
+		
+		for(Household household : givenHouseholdList)
+		{
+			boolean passAllConditions = true;
+			
+			if(passAllConditions)
+			{
+				result.add(household);
+			}
+		}
+		
+		return result;
+	}
+	
+	public static String searchHouseholdByGrantScheme (SearchHouseholdByGrantSchemeRequest searchSearchRequest) 	{
+
+		Utility.printDebugStatement("searchByHousehold");
+		GetHouseholdResponse getHouseholdResponse = new GetHouseholdResponse();
+		String serializedResult = "";
 		
 		/*
 		 * Return the result

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ngzhenghan.govtech.assignment.rest.response;
+package ngzhenghan.govtech.assignment.search.response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +14,16 @@ import ngzhenghan.govtech.assignment.entity.Household;
 /**
  * @author Ng Zheng Han
  *
- * Helper class to contain the results of getting Households
+ * Helper class to contain the results of searching Households
  */
-public class GetHouseholdResponse {
+public class SearchHouseholdResponse {
 	
 	List<? extends Household> houseHolds;
 	
 	/*
 	 * Empty constructor
 	 */
-	public GetHouseholdResponse () 	{
+	public SearchHouseholdResponse () 	{
 		
 	}
 

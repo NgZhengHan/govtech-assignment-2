@@ -34,6 +34,8 @@ public class Household {
 	
 	private Set<FamilyMember> householdMembers = new HashSet<>();
 	
+	private Double totalIncome = null;
+	
 	private Boolean deleted = null;
 	
 	/*
