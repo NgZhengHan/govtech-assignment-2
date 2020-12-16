@@ -47,7 +47,7 @@ public class TestCreateFamilyMember extends HttpServlet 	{
 		familyMember.setMaritalStatus(MaritalStatus.SINGLE);
 		familyMember.setName("John Doe");
 		familyMember.setOccupationType(OccupationType.EMPLOYED);
-		familyMember.setSpouse(null);
+		familyMember.setSpouses(null);
 		Utility.buildAndPrintHttpPostForObject("http://localhost:8080/govtech-assignment-2/family-member", 
 												null, 
 												familyMember);

@@ -19,6 +19,11 @@
 			<many-to-many column="household_id" class="Household"/>
 		</set>
 		
+		<set name="spouses" table="family_member_spouse_mapping_table" cascade="all">
+			<key column="family_member_id_a"/>
+			<many-to-many column="family_member_id_b" class="FamilyMember"/>
+		</set>
+		
 <!-- 		<filter name="notDeleted"/> -->
 	</class>
 </hibernate-mapping>

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import ngzhenghan.govtech.assignment.entity.FamilyMember;
 import ngzhenghan.govtech.assignment.entity.Household;
+import ngzhenghan.govtech.assignment.entity.enums.Gender;
 
 /**
  * @author Ng Zheng Han
@@ -197,19 +198,40 @@ public class SearchHouseholdRequest {
 			return false;
 		}
 
-//		for(FamilyMember householdMember : householdMembers)
-//		{
-//			Double age = householdMember.findAge();
-//			
-//			if(null != age
-//					&& (age > withMembersOver))
-//			{
-//				/*
-//				 * At least one member's age meets this criteria
-//				 */
-//				return true;
-//			}
-//		}
+		for(FamilyMember householdMember : householdMembers)
+		{
+			Gender gender = householdMember.getGender();
+			Gender spouseGender = Gender.UNDEFINED;
+			
+			if(Gender.MALE == gender)
+			{
+				spouseGender = Gender.FEMALE;
+			}
+			else if(Gender.FEMALE == gender)
+			{
+				spouseGender = Gender.MALE;
+			}
+			
+			/*
+			 * Skip if we do not know what the spouse's gender is supposed to be
+			 */
+			if(Gender.MALE != spouseGender 
+			&& Gender.FEMALE != spouseGender)
+			{
+				continue;
+			}
+			
+			Set<FamilyMember> spouses = householdMember.getSpouses();
+			
+			for(FamilyMember spouse : spouses)
+			{
+				if(spouseGender == spouse.getGender())
+				{
+					return true;
+				}
+			}
+			
+		}
 		
 		return false;
 	}

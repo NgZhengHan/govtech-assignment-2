@@ -54,8 +54,7 @@ public class FamilyMember {
 	private Date dateOfBirth = null;
 	
 	private Set<Household> households = new HashSet<>();
-	private FamilyMember spouse = null;
-	private Long spouseId = null;
+	private Set<FamilyMember> spouses = null;
 	
 	private Boolean deleted = null;
 	
@@ -143,40 +142,12 @@ public class FamilyMember {
 		maritalStatus = MaritalStatus.values[maritalStatusOrdinal];
 	}
 
-	public FamilyMember getSpouse() {
-		return spouse;
+	public Set<FamilyMember> getSpouses() {
+		return spouses;
 	}
 
-	public void setSpouse(FamilyMember spouse) {
-		this.spouse = spouse;
-		
-		if(null == spouse)
-		{
-			spouseId = null;
-		}
-		else
-		{
-			spouseId = spouse.getId();
-		}
-	}
-
-	public Long getSpouseId() {
-		return spouseId;
-	}
-
-	public void setSpouseId(Long spouseId) {
-		this.spouseId = spouseId;
-		
-		if(null == spouseId)
-		{
-			spouse = null;
-		}
-		else
-		{
-			/*
-			 * Cannot get spouse from just id alone
-			 */
-		}
+	public void setSpouses(Set<FamilyMember> spouses) {
+		this.spouses = spouses;
 	}
 
 	public OccupationType getOccupationType() {
