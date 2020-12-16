@@ -295,6 +295,7 @@ public class HouseholdManager {
 			 * Use logger here
 			 */
 			Utility.printDebugStatement("Exception");
+			exception.printStackTrace();
 		}
 		
 		/*

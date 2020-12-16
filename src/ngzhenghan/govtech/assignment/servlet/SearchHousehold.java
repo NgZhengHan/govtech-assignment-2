@@ -65,7 +65,6 @@ public class SearchHousehold  extends HttpServlet {
 			givenResponse.setCharacterEncoding("UTF-8");
 			writer.println("search result: ");
 			writer.println("" + serializedResult);
-			writer.println("" + serializedResult);
 			writer.flush();
 		} 
 		catch (IOException e) 

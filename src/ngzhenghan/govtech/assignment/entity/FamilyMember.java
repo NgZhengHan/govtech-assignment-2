@@ -3,6 +3,9 @@
  */
 package ngzhenghan.govtech.assignment.entity;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashSet;
@@ -80,9 +83,18 @@ public class FamilyMember {
 		{
 			Date now = new Date();
 			
-			long ageLong = ChronoUnit.YEARS.between(now.toInstant(), dateOfBirth.toInstant());
+			LocalDate birthLocalDate = dateOfBirth.toInstant()
+												.atZone(ZoneId.systemDefault())
+												.toLocalDate();
 			
-			age = Double.valueOf((double)ageLong);
+			LocalDate nowLocalDate = now.toInstant()
+												.atZone(ZoneId.systemDefault())
+												.toLocalDate();
+			
+			Period period = Period.between(birthLocalDate, nowLocalDate);
+			int ageInt = period.getYears();
+			
+			age = Double.valueOf((double)ageInt);
 		}
 		
 		return age;
